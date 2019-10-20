@@ -5,27 +5,27 @@
 #--------------------------------------------------------------------------------------------
 
 # Camera calibration and distortion parameters (OpenCV) 
-Camera.fx: 435.2046959714599
-Camera.fy: 435.2046959714599
-Camera.cx: 367.4517211914062
-Camera.cy: 252.2008514404297
+Camera.fx: 381.914307
+Camera.fy: 383.797882
+Camera.cx: 168.108963
+Camera.cy: 126.979446
 
 Camera.k1: 0.0
 Camera.k2: 0.0
 Camera.p1: 0.0
 Camera.p2: 0.0
 
-Camera.width: 752
-Camera.height: 480
+Camera.width: 320
+Camera.height: 240
 
 # Camera frames per second 
-Camera.fps: 20.0
+Camera.fps: 24.0
 
 # stereo baseline times fx
-Camera.bf: 47.90639384423901
+Camera.bf: 10
 
 # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
-Camera.RGB: 1
+Camera.RGB: 0
 
 # Close/Far threshold. Baseline times.
 ThDepth: 35
@@ -34,8 +34,8 @@ ThDepth: 35
 # Stereo Rectification. Only if you need to pre-rectify the images.
 # Camera.fx, .fy, etc must be the same as in LEFT.P
 #--------------------------------------------------------------------------------------------
-LEFT.height: 480
-LEFT.width: 752
+LEFT.height: 240
+LEFT.width: 320
 LEFT.D: !!opencv-matrix
    rows: 1
    cols: 5
@@ -57,8 +57,8 @@ LEFT.P:  !!opencv-matrix
    dt: d
    data: [435.2046959714599, 0, 367.4517211914062, 0,  0, 435.2046959714599, 252.2008514404297, 0,  0, 0, 1, 0]
 
-RIGHT.height: 480
-RIGHT.width: 752
+RIGHT.height: 240
+RIGHT.width: 320
 RIGHT.D: !!opencv-matrix
    rows: 1
    cols: 5
@@ -85,7 +85,7 @@ RIGHT.P:  !!opencv-matrix
 #--------------------------------------------------------------------------------------------
 
 # ORB Extractor: Number of features per image
-ORBextractor.nFeatures: 1200
+ORBextractor.nFeatures: 10000
 
 # ORB Extractor: Scale factor between levels in the scale pyramid 	
 ORBextractor.scaleFactor: 1.2
@@ -97,8 +97,8 @@ ORBextractor.nLevels: 8
 # Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
 # Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
 # You can lower these values if your images have low contrast			
-ORBextractor.iniThFAST: 20
-ORBextractor.minThFAST: 7
+ORBextractor.iniThFAST: 10
+ORBextractor.minThFAST: 8
 
 #--------------------------------------------------------------------------------------------
 # Viewer Parameters
