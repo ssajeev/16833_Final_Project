@@ -106,7 +106,7 @@ def main():
 	# ster = cv2.StereoBM_create(numDisparities=32, blockSize=25)
 	# disp = cv2.convertScaleAbs(ster.compute(left_img, right_img))
 	# cv2.imshow("d", disp)
-	ig = image_grabber("/home/advaith/Downloads/hamlyn_vids/hamlyn_vid_4.avi", 24)
+	ig = image_grabber("/home/advaith/Downloads/hamlyn_vids/stereo.avi", 24)
 	ig.grab_and_send()
 	ig.cap.release()
 	cv2.destroyAllWindows()
