@@ -1,7 +1,37 @@
 
 import torch.nn as nn
 import torch
+import cv2
 
+##
+# Bilinear Sampling from from https://github.com/alwynmathew/bilinear-sampler-pytorch/blob/master/bilinear.py
+##
+def image_warp(img, depth, padding_mode='zeros'):
+  # img: the source image (where to sample pixels) -- [B, 3, H, W]
+  # depth: depth map of the target image -- [B, 1, H, W]
+  # Returns: Source image warped to the target image
+
+  b, _, h, w = depth.size()
+  i_range = torch.autograd.Variable(torch.linspace(-1.0, 1.0).view(1, h, 1).expand(1, h, w),
+                                    requires_grad=False)  # [1, H, W]  copy 0-height for w times : y coord
+  j_range = torch.autograd.Variable(torch.linspace(-1.0, 1.0).view(1, 1, w).expand(1, h, w),
+                                    requires_grad=False)  # [1, H, W]  copy 0-width for h times  : x coord
+
+  pixel_coords = torch.stack((j_range, i_range), dim=1).float().cuda()  # [1, 2, H, W]
+  batch_pixel_coords = pixel_coords[:, :, :, :].expand(b, 2, h, w).contiguous().view(b, 2, -1)  # [B, 2, H*W]
+
+  X = batch_pixel_coords[:, 0, :] + depth.contiguous().view(b, -1)  # [B, H*W]
+  Y = batch_pixel_coords[:, 1, :]
+
+  X_norm = X
+  Y_norm = Y
+
+  pixel_coords = torch.stack([X_norm, Y_norm], dim=2)  # [B, H*W, 2]
+  pixel_coords = pixel_coords.view(b, h, w, 2)  # [B, H, W, 2]
+
+  projected_img = torch.nn.functional.grid_sample(img, pixel_coords, padding_mode=padding_mode)
+
+  return projected_img
 
 class DepthModel(nn.Module):
   def __init__(self):
@@ -162,8 +192,8 @@ class DepthModel(nn.Module):
     deconv2_1_output = self.batchnormd_2_1(self.relud_2_1(self.deconv2_1(join2_output)))
     deconv2_2_output = self.batchnormd_2_2(self.relud_2_2(self.deconv2_2(deconv2_1_output)))
 
-    deconv2_2_output_disp2 = self.disp2_batchnorm(self.disp2_relu(self.disp2_deconv(deconv2_2_output)))
-    disp2 = self.disp2_sigmoid(self.disp2_conv(deconv2_2_output_disp2))
+    # deconv2_2_output_disp2 = self.disp2_batchnorm(self.disp2_relu(self.disp2_deconv(deconv2_2_output)))
+    # disp2 = self.disp2_sigmoid(self.disp2_conv(deconv2_2_output_disp2))
 
     unpool1_output = self.unpool1(deconv2_2_output, indices1)
     join1_output = torch.cat([unpool1_output, conv1_2_output], 2)
@@ -173,20 +203,33 @@ class DepthModel(nn.Module):
 
     disp1 = self.disp1_sigmoid(self.disp1_conv(deconv1_2_output))
 
-    return [disp1, disp2]
+    return disp1
 
 
 class SiameseDepthModel(nn.Module):
-  def __init__(self):
+  def __init__(self, width, height, focal_length, baseline):
     super(SiameseDepthModel, self).__init__()
     self.depth_model = DepthModel()
+    self.width = width
+    self.heigt = height
+    self.focal_length = focal_length
+    self.baseline = baseline
 
   def forward(self, l_image, r_image):
-    [disp1_l, disp2_l] = self.depth_model.forward(l_image)
-    [disp1_r, disp2_r] = self.depth_model.forward(r_image)
+    disp1_l = -1 * self.depth_model.forward(l_image)
+    disp1_r = self.depth_model.forward(r_image)
 
+    projected_img_l = image_warp(r_image, disp1_l)
+    projected_img_r = image_warp(l_image, disp1_r)
 
+    self.depth_l = self.focal_length * self.baseline / disp1_l
+    self.depth_r = self.focal_length * self.baseline / disp1_r
 
-    return
+    return projected_img_l, projected_img_r
 
-
+  def get_depth_imgs(self):
+    depth_l = torch.Tensor.cpu(self.depth_l).detach().numpy()[:,:,:,-1]
+    depth_r = torch.Tensor.cpu(self.depth_r).detach().numpy()[:,:,:,-1]
+    depth_l_img = cv2.normalize(depth_l, depth_l, 0, 255, cv.NORM_MINMAX)
+    depth_r_img = cv2.normalize(depth_r, depth_r, 0, 255, cv.NORM_MINMAX)
+    return  depth_l_img, depth_r_img
