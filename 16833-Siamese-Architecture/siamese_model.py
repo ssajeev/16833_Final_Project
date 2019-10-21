@@ -7,6 +7,7 @@ class DepthModel(nn.Module):
   def __init__(self):
     super(DepthModel, self).__init__()
 
+    self.identity = nn.Identity()
     #Encoder
     self.conv1_1 = nn.Conv2d(3, 64, 3, 1)
     self.relu1_1 = nn.ReLU()
@@ -57,7 +58,6 @@ class DepthModel(nn.Module):
     self.pool4 = nn.MaxPool2d(2, 2, return_indices=True)
 
     #Decoder
-
     self.deconv5_1 = nn.ConvTranspose2d(512, 512, 3, 1)
     self.relud_5_1 = nn.ReLU()
     self.batchnormd_5_1= nn.BatchNorm2d(512, 1e-3)
@@ -106,13 +106,20 @@ class DepthModel(nn.Module):
     self.relud_1_2 = nn.ReLU()
     self.batchnormd_1_2 = nn.BatchNorm2d(3, 1e-3)
 
-    self.disp2_conv = nn.Conv2d(64, 3, 3, 1)
-    self.disp2_conv = nn.Conv2d(64, 3, 3, 1)
+    self.disp2_deconv = nn.ConvTranspose2d(64, 3, 3, 1)
+    self.disp2_relu = nn.ReLU()
+    self.disp2_batchnorm = nn.BatchNorm2d(3, 1e-3)
+
+    self.disp1_conv = nn.Conv2d(3, 1, 3, 1)
+    self.disp2_conv = nn.Conv2d(3, 1, 3, 1)
+    self.disp1_sigmoid = nn.Sigmoid()
+    self.disp2_sigmoid = nn.Sigmoid()
 
 
   def forward(self, x):
 
     #Encoder
+    x = self.identity(x)
     conv1_1_output = self.batchnorm_1_1(self.relu1_1(self.conv1_1(x)))
     conv1_2_output = self.batchnorm_1_2(self.relu1_2(self.conv1_2(conv1_1_output)))
     pool1_output, indices1 = self.pool1(conv1_2_output)
@@ -155,8 +162,8 @@ class DepthModel(nn.Module):
     deconv2_1_output = self.batchnormd_2_1(self.relud_2_1(self.deconv2_1(join2_output)))
     deconv2_2_output = self.batchnormd_2_2(self.relud_2_2(self.deconv2_2(deconv2_1_output)))
 
-
-    #disp2
+    deconv2_2_output_disp2 = self.disp2_batchnorm(self.disp2_relu(self.disp2_deconv(deconv2_2_output)))
+    disp2 = self.disp2_sigmoid(self.disp2_conv(deconv2_2_output_disp2))
 
     unpool1_output = self.unpool1(deconv2_2_output, indices1)
     join1_output = torch.cat([unpool1_output, conv1_2_output], 2)
@@ -164,30 +171,22 @@ class DepthModel(nn.Module):
     deconv1_1_output = self.batchnorm_1_1(self.relu1_1(self.deconv1_1(join1_output)))
     deconv1_2_output = self.batchnorm_1_2(self.relu1_2(self.deconv1_2(deconv1_1_output)))
 
-    disp1 = nn.Sigmoid(nn.Conv2d())
+    disp1 = self.disp1_sigmoid(self.disp1_conv(deconv1_2_output))
 
-
-    return x
+    return [disp1, disp2]
 
 
 class SiameseDepthModel(nn.Module):
   def __init__(self):
     super(SiameseDepthModel, self).__init__()
-    self.conv1 = nn.Conv2d(1, 6, 5)
-    self.pool = nn.MaxPool2d(2, 2)
-    self.conv2 = nn.Conv2d(6, 16, 5)
-    self.fc1 = nn.Linear(16 * 4 * 4, 120)
-    self.fc2 = nn.Linear(120, 84)
-    self.fc3 = nn.Linear(84, 10)
+    self.depth_model = DepthModel()
 
   def forward(self, l_image, r_image):
-    x = self.pool(F.relu(self.conv1(x)))
-    x = self.pool(F.relu(self.conv2(x)))
-    x = x.view(-1, 16 * 4 * 4)
-    x = F.relu(self.fc1(x))
-    x = F.relu(self.fc2(x))
-    x = self.fc3(x)
-    return x
+    [disp1_l, disp2_l] = self.depth_model.forward(l_image)
+    [disp1_r, disp2_r] = self.depth_model.forward(r_image)
 
-net2 = SiameseDepthModel()
+
+
+    return
+
 
