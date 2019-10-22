@@ -20,38 +20,42 @@ LEARNING_RATE = 0.001
 
 
 
-class SSI_loss():
+class SSI_loss(nn.Module):
+  def __init__(self):
+    super(SSI_loss, self).__init__()
+
   def forward(self, output, target):
-    y = output
-    x = target
+    y = (output)
+    x = (target)
 
     C1 = 6.5025
     C2 = 58.5225
 
-    mu_x = torch.AvgPool2d(x, requires_grad=True)
-    mu_y = torch.AvgPool2d(y, requires_grad=True)
-    mu_x_sq = torch.dot(mu_x, mu_x)
-    mu_y_sq = torch.dot(mu_y, mu_y)
-    mu_xy = torch.dot(mu_x, mu_y)
-    X_2 = torch.dot(x, x)
-    Y_2 = torch.dot(y, y)
-    XY = torch.dot(x, y)
-    sigma_x_sq = torch.AvgPool2d(X_2, requires_grad=True) - mu_x_sq
-    sigma_y_sq = torch.AvgPool2d(Y_2, requires_grad=True) - mu_y_sq
-    sigma_xy = torch.AvgPool2d(XY, requires_grad=True) - mu_xy
+    mu_x = nn.AvgPool2d(3, stride=1)(x)
+    mu_y = nn.AvgPool2d(3, stride=1)(y)
+
+    mu_x_sq = (mu_x * mu_x)
+    mu_y_sq = (mu_y * mu_y)
+    mu_xy = (mu_x * mu_y)
+    X_2 = (x * x)
+    Y_2 = (y * y)
+    XY = (x * y)
+    sigma_x_sq = nn.AvgPool2d(3, 1)(X_2) - mu_x_sq
+    sigma_y_sq = nn.AvgPool2d(3, 1)(Y_2) - mu_y_sq
+    sigma_xy = nn.AvgPool2d(3, 1)(XY) - mu_xy
     A1 = mu_xy * 2 + C1
     A2 = sigma_xy * 2 + C2
     B1 = mu_x_sq + mu_y_sq + C1
     B2 = sigma_x_sq + sigma_y_sq + C2
-    A = torch.dot(A1, A2)
-    B = torch.dot(B1, B2)
-    app_loss = (1 - torch.mean(torch.div(A, B)))
+    A = (A1 * A2)
+    B = (B1 * B2)
+    app_loss = (1 - ((A / B)).mean())
     self.app_loss_shape = np.shape(app_loss)
     self.app_loss = app_loss
     return app_loss
 
   def backward(self):
-    return self.app_loss.backward(self.app_loss_shape)
+    return None
 
 def main():
   # cudnn = libcudnn.cudnnCreate()
@@ -86,8 +90,18 @@ def main():
   focal_length = ((373.47833252)**2 + (373.47833252)**2)**0.5
   baseline = -5.63117313
 
+
+
   model = SiameseDepthModel(width, height, focal_length, baseline)
+
+  for param in model.parameters():
+    param.requires_grad = True
+
   criterion = SSI_loss()
+
+  for param in criterion.parameters():
+    param.requires_grad = True
+
   optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
   for epoch in range(EPOCHS):
@@ -95,9 +109,11 @@ def main():
 
       optimizer.zero_grad()
       outputs = model(batch_input["image_l"], batch_input["image_r"])
-      err = criterion.forward(outputs, [batch_input["image_l"], batch_input["image_r"]])
+      err = criterion.forward(outputs[0], batch_input["image_l"])
       dparams = criterion.backward()
       optimizer.step()
+
+      print(err)
 
 
 
