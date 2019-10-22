@@ -154,7 +154,7 @@ class DepthModel(nn.Module):
     conv1_2_output = self.batchnorm_1_2(self.relu1_2(self.conv1_2(conv1_1_output)))
     pool1_output, indices1 = self.pool1(conv1_2_output)
     conv2_1_output = self.batchnorm_2_1(self.relu2_1(self.conv2_1(pool1_output)))
-    conv2_2_output = self.batchnorm_2_2(self.reul2_2(self.conv2_2(conv2_1_output)))
+    conv2_2_output = self.batchnorm_2_2(self.relu2_2(self.conv2_2(conv2_1_output)))
     pool2_output, indices2 = self.pool2(conv2_2_output)
 
     conv3_1_output = self.batchnorm_3_1(self.relu3_1(self.conv3_1(pool2_output)))
@@ -225,7 +225,7 @@ class SiameseDepthModel(nn.Module):
     self.depth_l = self.focal_length * self.baseline / disp1_l
     self.depth_r = self.focal_length * self.baseline / disp1_r
 
-    return projected_img_l, projected_img_r
+    return [projected_img_l, projected_img_r]
 
   def get_depth_imgs(self):
     depth_l = torch.Tensor.cpu(self.depth_l).detach().numpy()[:,:,:,-1]
@@ -233,3 +233,11 @@ class SiameseDepthModel(nn.Module):
     depth_l_img = cv2.normalize(depth_l, depth_l, 0, 255, cv.NORM_MINMAX)
     depth_r_img = cv2.normalize(depth_r, depth_r, 0, 255, cv.NORM_MINMAX)
     return  depth_l_img, depth_r_img
+
+# width = 384
+# height = 192
+# focal_length = ((373.47833252)**2 + (373.47833252)**2)**0.5
+# baseline = -5.63117313
+# model = SiameseDepthModel(width, height, focal_length, base)
+# print(model.state_dict())
+# print(len(model.state_dict()))

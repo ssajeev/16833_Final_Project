@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms, utils
 import cv2
+from PIL import Image
 
 class EndoscopicDataset(Dataset):
   """Hamlyn Endoscopic Surgery Images Dataset."""
@@ -31,17 +32,20 @@ class EndoscopicDataset(Dataset):
     if torch.is_tensor(idx):
       idx = idx.tolist()
 
+    print(self.meta_frame.iloc[idx, 1])
+
     img_name_l = os.path.join(self.root_dir, 'image_0',
-                            self.meta_frame.iloc[idx, 0])
-    image_l = cv2.imread(img_name_l)
+                            self.meta_frame.iloc[idx, 1])
+    image_l = Image.open(img_name_l)
 
     img_name_r = os.path.join(self.root_dir, 'image_1',
-                              self.meta_frame.iloc[idx, 0])
-    image_r = cv2.imread(img_name_r)
+                              self.meta_frame.iloc[idx, 1])
+    image_r = Image.open(img_name_r)
 
     sample = {'image_l': image_l, 'image_r': image_r}
 
     if self.transform:
-      sample = self.transform(sample)
+      sample["image_l"] = self.transform(sample["image_l"])
+      sample["image_r"] = self.transform(sample["image_r"])
 
     return sample
