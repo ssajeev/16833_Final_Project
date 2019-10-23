@@ -32,6 +32,8 @@ class EndoscopicDataset(Dataset):
     if torch.is_tensor(idx):
       idx = idx.tolist()
 
+    print(self.meta_frame.iloc[idx, 1])
+
 
     img_name_l = os.path.join(self.root_dir, 'image_0',
                             self.meta_frame.iloc[idx, 1])

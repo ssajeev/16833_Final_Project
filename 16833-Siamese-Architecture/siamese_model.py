@@ -5,6 +5,10 @@ import cv2
 import numpy as np
 from torch.nn.functional import pad
 
+
+##
+# Pytorch implenetation of bilinear sampling
+##
 def apply_disparity(input_images, x_offset, wrap_mode='border', tensor_type='torch.cuda.FloatTensor'):
     num_batch, num_channels, height, width = input_images.size()
 
@@ -13,7 +17,7 @@ def apply_disparity(input_images, x_offset, wrap_mode='border', tensor_type='tor
     if wrap_mode == 'border':
       edge_size = 1
       # Pad last and second-to-last dimensions by 1 from both sides
-      input_images = pad(input_images, (1, 1, 1, 1))
+      input_images = pad(input_images, [1, 1, 1, 1])
     elif wrap_mode == 'edge':
       edge_size = 0
     else:
@@ -25,8 +29,8 @@ def apply_disparity(input_images, x_offset, wrap_mode='border', tensor_type='tor
 
     # Create meshgrid for pixel indicies (PyTorch doesn't have dedicated
     # meshgrid function)
-    x = torch.linspace(0, width - 1, width).repeat(height, 1)  #.type(tensor_type).to(opt.gpu_ids)
-    y = torch.linspace(0, height - 1, height).repeat(width, 1) #.transpose(0, 1)  #.type(tensor_type).to(opt.gpu_ids)
+    x = torch.linspace(0, width - 1, width).repeat(height, 1).type(tensor_type).to(opt.gpu_ids)
+    y = torch.linspace(0, height - 1, height).repeat(width, 1).transpose(0, 1).type(tensor_type).to(opt.gpu_ids)
     # Take padding into account
     x = x + edge_size
     y = y + edge_size
@@ -52,7 +56,7 @@ def apply_disparity(input_images, x_offset, wrap_mode='border', tensor_type='tor
     dim2 = (width + 2 * edge_size)
     dim1 = (width + 2 * edge_size) * (height + 2 * edge_size)
     # Set offsets for each image in the batch
-    base = dim1 * torch.arange(num_batch)  #.type(tensor_type).to(opt.gpu_ids)
+    base = dim1 * torch.arange(num_batch).type(tensor_type).to(opt.gpu_ids)
     base = base.view(-1, 1).repeat(1, height * width).view(-1)
     # One pixel shift in Y  direction equals dim2 shift in flattened array
     base_y0 = base + y0 * dim2
@@ -271,21 +275,17 @@ class SiameseDepthModel(nn.Module):
     projected_img_l = apply_disparity(r_image, disp1_l)
     projected_img_r = apply_disparity(l_image, disp1_r)
 
-
-
     return [projected_img_l, projected_img_r]
 
   def get_depth_imgs(self):
-    depth_l = torch.Tensor.cpu(self.depth_l).detach().numpy()[:,:,:,-1]
-    depth_r = torch.Tensor.cpu(self.depth_r).detach().numpy()[:,:,:,-1]
-    depth_l_img = cv2.normalize(depth_l, depth_l, 0, 255, cv.NORM_MINMAX)
-    depth_r_img = cv2.normalize(depth_r, depth_r, 0, 255, cv.NORM_MINMAX)
+    depth_l = torch.Tensor.cpu(self.depth_l).detach().numpy()[-1,:,:,:]
+    depth_r = torch.Tensor.cpu(self.depth_r).detach().numpy()[-1,:,:,:]
+    depth_l = np.transpose(depth_l, (1, 2, 0))
+    depth_r = np.transpose(depth_r, (1, 2, 0))
+
+    depth_l_img = cv2.normalize(depth_l, depth_l, 0, 255, cv2.NORM_MINMAX)
+    depth_r_img = cv2.normalize(depth_r, depth_r, 0, 255, cv2.NORM_MINMAX)
+
+
     return  depth_l_img, depth_r_img
 
-# width = 384
-# height = 192
-# focal_length = ((373.47833252)**2 + (373.47833252)**2)**0.5
-# baseline = -5.63117313
-# model = SiameseDepthModel(width, height, focal_length, base)
-# print(model.state_dict())
-# print(len(model.state_dict()))

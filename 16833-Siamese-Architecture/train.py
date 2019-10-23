@@ -6,19 +6,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms, utils
-# import libcudnn
-
+import libcudnn
+import datetime
 
 from endoscopic_dataset import *
 from siamese_model import *
 
 ROOT_DIR = 'data/images/'
-BATCH_SIZE = 32
+BATCH_SIZE = 1
 NUM_WORKERS = 4
 EPOCHS = 100
 LEARNING_RATE = 0.001
-
-
+MODEL_SAVE_PATH = "saved_model_" + datetime.datetime.now().strftime("%m-%d-%Y-%H:%M:%S") + ".pt"
 
 class SSI_loss(nn.Module):
   def __init__(self):
@@ -58,17 +57,15 @@ class SSI_loss(nn.Module):
     return None
 
 def main():
-  # cudnn = libcudnn.cudnnCreate()
-  #
-  # # use_cuda = torch.cuda.is_available()
-  # # device = torch.device("cuda:0" if use_cuda else "cpu")
-  # cudnn.benchmark = True
+  cudnn = libcudnn.cudnnCreate()
+
+  use_cuda = torch.cuda.is_available()
+  device = torch.device("cuda:0" if use_cuda else "cpu")
+  cudnn.benchmark = True
 
   train_dataset = EndoscopicDataset(csv_file='train.csv',
                                            root_dir='/Users/Sandra/Downloads/daVinci/train/',
                                            transform=transforms.Compose([
-
-                                               # transforms.RandomCrop(224),
                                                transforms.ToTensor()
                                            ]))
 
@@ -90,10 +87,8 @@ def main():
   focal_length = ((373.47833252)**2 + (373.47833252)**2)**0.5
   baseline = -5.63117313
 
-
-
   model = SiameseDepthModel(width, height, focal_length, baseline)
-
+  model = model.train()
   for param in model.parameters():
     param.requires_grad = True
 
@@ -109,15 +104,15 @@ def main():
 
       optimizer.zero_grad()
       outputs = model(batch_input["image_l"], batch_input["image_r"])
-      err = criterion.forward(outputs[0], batch_input["image_l"])
-      dparams = criterion.backward()
+
+      loss_1 = criterion.forward(outputs[0], batch_input["image_l"])
+      loss_2 = criterion.forward(outputs[1], batch_input["image_r"])
+      loss = loss_1 + loss_2
+
+      loss.backward()
       optimizer.step()
 
-      print(err)
-
-
-
-
+    torch.save(model.state_dict(), MODEL_SAVE_PATH)
 
   pass
 
