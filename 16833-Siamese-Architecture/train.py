@@ -6,14 +6,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms, utils
-import libcudnn
+#import libcudnn
 import datetime
-
+from tqdm import tqdm
 from endoscopic_dataset import *
 from siamese_model import *
 
 ROOT_DIR = 'data/images/'
-BATCH_SIZE = 1
+BATCH_SIZE = 16
 NUM_WORKERS = 4
 EPOCHS = 100
 LEARNING_RATE = 0.001
@@ -57,14 +57,14 @@ class SSI_loss(nn.Module):
     return None
 
 def main():
-  cudnn = libcudnn.cudnnCreate()
+  #cudnn = libcudnn.cudnnCreate()
 
   use_cuda = torch.cuda.is_available()
   device = torch.device("cuda:0" if use_cuda else "cpu")
-  cudnn.benchmark = True
+  #cudnn.benchmark = True
 
   train_dataset = EndoscopicDataset(csv_file='train.csv',
-                                           root_dir='/Users/Sandra/Downloads/daVinci/train/',
+                                           root_dir='daVinci/train/',
                                            transform=transforms.Compose([
                                                transforms.ToTensor()
                                            ]))
@@ -88,6 +88,7 @@ def main():
   baseline = -5.63117313
 
   model = SiameseDepthModel(width, height, focal_length, baseline)
+  model.cuda()
   model = model.train()
   for param in model.parameters():
     param.requires_grad = True
@@ -100,18 +101,20 @@ def main():
   optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
   for epoch in range(EPOCHS):
-    for batch_input in dataset_loader:
-
+    print("Epoch: ", epoch)
+    t = tqdm(iter(dataset_loader), leave=False, total=len(dataset_loader))
+    for i, batch_input in enumerate(t):
+      left_img, right_img = batch_input["image_l"].to(device), batch_input["image_r"].to(device)
       optimizer.zero_grad()
-      outputs = model(batch_input["image_l"], batch_input["image_r"])
+      outputs = model(left_img, right_img)
 
-      loss_1 = criterion.forward(outputs[0], batch_input["image_l"])
-      loss_2 = criterion.forward(outputs[1], batch_input["image_r"])
+      loss_1 = criterion.forward(outputs[0], left_img)
+      loss_2 = criterion.forward(outputs[1], right_img)
       loss = loss_1 + loss_2
 
       loss.backward()
       optimizer.step()
-
+    print("Loss: ", loss)
     torch.save(model.state_dict(), MODEL_SAVE_PATH)
 
   pass

@@ -29,8 +29,8 @@ def apply_disparity(input_images, x_offset, wrap_mode='border', tensor_type='tor
 
     # Create meshgrid for pixel indicies (PyTorch doesn't have dedicated
     # meshgrid function)
-    x = torch.linspace(0, width - 1, width).repeat(height, 1).type(tensor_type).to(opt.gpu_ids)
-    y = torch.linspace(0, height - 1, height).repeat(width, 1).transpose(0, 1).type(tensor_type).to(opt.gpu_ids)
+    x = torch.linspace(0, width - 1, width).repeat(height, 1).type(tensor_type).to(0)
+    y = torch.linspace(0, height - 1, height).repeat(width, 1).transpose(0, 1).type(tensor_type).to(0)
     # Take padding into account
     x = x + edge_size
     y = y + edge_size
@@ -56,7 +56,7 @@ def apply_disparity(input_images, x_offset, wrap_mode='border', tensor_type='tor
     dim2 = (width + 2 * edge_size)
     dim1 = (width + 2 * edge_size) * (height + 2 * edge_size)
     # Set offsets for each image in the batch
-    base = dim1 * torch.arange(num_batch).type(tensor_type).to(opt.gpu_ids)
+    base = dim1 * torch.arange(num_batch).type(tensor_type).to(0)
     base = base.view(-1, 1).repeat(1, height * width).view(-1)
     # One pixel shift in Y  direction equals dim2 shift in flattened array
     base_y0 = base + y0 * dim2
@@ -264,11 +264,6 @@ class SiameseDepthModel(nn.Module):
     disp1_l = -1 * self.depth_model.forward(l_image)
     disp1_r = self.depth_model.forward(r_image)
 
-    print(disp1_l.size())
-    print(disp1_r.size())
-    print(r_image.size())
-    print(l_image.size())
-
     self.depth_l = self.focal_length * self.baseline / disp1_l
     self.depth_r = self.focal_length * self.baseline / disp1_r
 
@@ -285,7 +280,6 @@ class SiameseDepthModel(nn.Module):
 
     depth_l_img = cv2.normalize(depth_l, depth_l, 0, 255, cv2.NORM_MINMAX)
     depth_r_img = cv2.normalize(depth_r, depth_r, 0, 255, cv2.NORM_MINMAX)
-
 
     return  depth_l_img, depth_r_img
 
