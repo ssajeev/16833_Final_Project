@@ -261,16 +261,19 @@ class SiameseDepthModel(nn.Module):
     self.baseline = baseline
 
   def forward(self, l_image, r_image):
-    disp1_l = -1 * self.depth_model.forward(l_image)
+    disp1_l = self.depth_model.forward(l_image)
     disp1_r = self.depth_model.forward(r_image)
 
     self.depth_l = self.focal_length * self.baseline / disp1_l
     self.depth_r = self.focal_length * self.baseline / disp1_r
 
-    projected_img_l = apply_disparity(r_image, disp1_l)
+    projected_img_l = apply_disparity(r_image, -1 * disp1_l)
     projected_img_r = apply_disparity(l_image, disp1_r)
 
-    return [projected_img_l, projected_img_r]
+    right_to_left_disp = apply_disparity(disp1_r, -1 * disp1_l)
+    left_to_right_disp = apply_disparity(disp1_l,  disp1_r)
+
+    return [projected_img_l, projected_img_r, right_to_left_disp, left_to_right_disp, disp1_l, disp1_r]
 
   def get_depth_imgs(self):
     depth_l = torch.Tensor.cpu(self.depth_l).detach().numpy()[-1,:,:,:]

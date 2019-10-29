@@ -17,16 +17,15 @@ BATCH_SIZE = 16
 NUM_WORKERS = 4
 EPOCHS = 100
 LEARNING_RATE = 0.001
-MODEL_SAVE_PATH = "saved_model_" + datetime.datetime.now().strftime("%m-%d-%Y-%H:%M:%S") + ".pt"
 
-class SSI_loss(nn.Module):
-  def __init__(self):
-    super(SSI_loss, self).__init__()
+class cummalative_loss(nn.Module):
+  def __init__(self, alpha=0.5, beta=0.5, c=1.0):
+    super(cummalative_loss, self).__init__()
+    self.alpha = alpha
+    self.beta = beta
+    self.c = c
 
-  def forward(self, output, target):
-    y = (output)
-    x = (target)
-
+  def SSI(self, x, y):
     C1 = 6.5025
     C2 = 58.5225
 
@@ -49,9 +48,32 @@ class SSI_loss(nn.Module):
     A = (A1 * A2)
     B = (B1 * B2)
     app_loss = (1 - ((A / B)).mean())
-    self.app_loss_shape = np.shape(app_loss)
-    self.app_loss = app_loss
     return app_loss
+
+
+  def forward(self, left_img, right_img, projected_img_l, projected_img_r,
+              right_to_left_disp, left_to_right_disp, disp1_l, disp1_r):
+
+    #SSI Loss
+    ssim_loss_left = self.SSI(left_img, projected_img_l)
+    ssim_loss_right = self.SSI(right_img, projected_img_r)
+
+    #L1 Reconstruction Loss
+    l1_loss_left = nn.L1Loss(left_img, projected_img_l)
+    l1_loss_right = nn.L1Loss(right_img, projected_img_r)
+
+    #Weighted Loss
+    loss_left = self.alpha*(ssim_loss_left + l1_loss_left)
+    loss_right = self.beta*(ssim_loss_right + l1_loss_right)
+
+    #Consistency Loss
+    lr_left_loss = nn.L1Loss(disp1_l, right_to_left_disp)
+    lr_right_loss = nn.L1Loss(disp1_r, left_to_right_disp)
+    lr_loss = lr_left_loss + lr_right_loss
+
+    total_loss = self.c*lr_loss + loss_left + loss_right
+
+    return total_loss
 
   def backward(self):
     return None
@@ -93,7 +115,7 @@ def main():
   for param in model.parameters():
     param.requires_grad = True
 
-  criterion = SSI_loss()
+  criterion = cummalative_loss()
 
   for param in criterion.parameters():
     param.requires_grad = True
@@ -106,15 +128,16 @@ def main():
     for i, batch_input in enumerate(t):
       left_img, right_img = batch_input["image_l"].to(device), batch_input["image_r"].to(device)
       optimizer.zero_grad()
-      outputs = model(left_img, right_img)
+      [projected_img_l, projected_img_r,
+       right_to_left_disp, left_to_right_disp, disp1_l, disp1_r] = model(left_img, right_img)
 
-      loss_1 = criterion.forward(outputs[0], left_img)
-      loss_2 = criterion.forward(outputs[1], right_img)
-      loss = loss_1 + loss_2
-
+      loss = criterion.forward(left_img, right_img, projected_img_l, projected_img_r,
+              right_to_left_disp, left_to_right_disp, disp1_l, disp1_r)
       loss.backward()
       optimizer.step()
     print("Loss: ", loss)
+
+    MODEL_SAVE_PATH = "saved_model_" + datetime.datetime.now().strftime("%m-%d-%Y-%H:%M:%S") + ".pt"
     torch.save(model.state_dict(), MODEL_SAVE_PATH)
 
   pass
