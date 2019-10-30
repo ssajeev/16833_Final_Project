@@ -5,7 +5,7 @@ import cv2
 from PIL import Image
 from torchvision import transforms 
 from siamese_model_inf import *
-
+from datetime import datetime
 def load_model(model_path):
   device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
   width = 384
@@ -23,14 +23,18 @@ def inference(model, img_l, img_r):
   transform = transforms.Compose([transforms.ToTensor()])
   output = model.forward(transform(img_l).unsqueeze(0), transform(img_r).unsqueeze(0))
   img_l_depth, img_r_depth = model.get_depth_imgs()
-  cv2.imwrite("test1.png", img_l_depth)
+  cv2.imwrite("saved_model_10-29-2019-23:27:09_testl.png", img_l_depth)
+  cv2.imwrite("saved_model_10-29-2019-23:27:09_testr.png", img_r_depth)
   return [img_l_depth, img_r_depth]
 
 
 def main():
-  model = load_model("saved_model_10-25-2019-23:35:09.pt");
+  model = load_model("saved_model_10-29-2019-23:27:09.pt");
   img_1 = Image.open("daVinci/train/image_0/000300.png")
   img_2 = Image.open("daVinci/train/image_1/000300.png")
+
+  img1 = cv2.imread("daVinci/train/image_0/000300.png")
+  cv2.imwrite("img_test.png", img1)
   inference(model, img_1, img_2)
 
 

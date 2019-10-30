@@ -59,16 +59,16 @@ class cummalative_loss(nn.Module):
     ssim_loss_right = self.SSI(right_img, projected_img_r)
 
     #L1 Reconstruction Loss
-    l1_loss_left = nn.L1Loss(left_img, projected_img_l)
-    l1_loss_right = nn.L1Loss(right_img, projected_img_r)
+    l1_loss_left = torch.mean(torch.abs(left_img - projected_img_l))
+    l1_loss_right = torch.mean(torch.abs(right_img - projected_img_r))
 
     #Weighted Loss
     loss_left = self.alpha*(ssim_loss_left + l1_loss_left)
     loss_right = self.beta*(ssim_loss_right + l1_loss_right)
 
     #Consistency Loss
-    lr_left_loss = nn.L1Loss(disp1_l, right_to_left_disp)
-    lr_right_loss = nn.L1Loss(disp1_r, left_to_right_disp)
+    lr_left_loss = torch.mean(torch.abs(disp1_l - right_to_left_disp))
+    lr_right_loss = torch.mean(torch.abs(disp1_r - left_to_right_disp))
     lr_loss = lr_left_loss + lr_right_loss
 
     total_loss = self.c*lr_loss + loss_left + loss_right
