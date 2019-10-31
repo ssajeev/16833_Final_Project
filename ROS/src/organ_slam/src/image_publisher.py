@@ -22,7 +22,7 @@ class img_publisher:
 
     def pull_loop(self):
         print("Sleeping for 2 seconds")
-        rospy.sleep(10.)
+
         if(not self.cap.isOpened()):
             print("Error in video file path")
         while(self.cap.isOpened()):
