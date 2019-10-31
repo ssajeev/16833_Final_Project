@@ -10,7 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ROS/src/image_publisher.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/devel/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/_setup_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/organ_slam/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/organ_slam/package.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/image_publisher.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1572402040188</updated>
       <workItem from="1572402041490" duration="3708000" />
+      <workItem from="1572489259943" duration="5138000" />
     </task>
     <servers />
   </component>
@@ -76,10 +82,23 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
