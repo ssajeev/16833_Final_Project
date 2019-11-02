@@ -17,7 +17,7 @@ visual_mult = 1.0
 
 class disparity_generator:
 
-    def __init__(self, path_to_video, frame_rate, model_path = ""):
+    def __init__(self, frame_rate, model_path = ""):
         print("Sleeping for 2.0 seconds")
         rospy.sleep(2.)
         #self.model = load_thingy
@@ -25,10 +25,6 @@ class disparity_generator:
         self.image_feed_left = rospy.Subscriber("left_stereo", Image, self.get_left)
         self.image_feed_right = rospy.Subscriber("right_stereo", Image, self.get_right)
         self.disparity_pub = rospy.Publisher("disp_map_raw", Image, queue_size=10)
-        self.path_to_video = path_to_video
-        self.cap = cv2.VideoCapture(self.path_to_video)
-        if(not self.cap.isOpened()):
-            print("Error in video file path")
 
         self.rate = rospy.Rate(frame_rate)
         self.left_img = None
@@ -47,12 +43,14 @@ class disparity_generator:
         self.r_flag = True
 
     def generate_disp_map(self):
-        while(1):
+        while not rospy.is_shutdown():
             if(not self.l_flag or not self.r_flag):
                 continue
             else:
                 left_img = cv2.cvtColor(self.left_img, cv2.COLOR_BGR2GRAY)
                 right_img = cv2.cvtColor(self.right_img, cv2.COLOR_BGR2GRAY)
+
+                cv2.waitKey(33)
                 l_stereo = cv2.StereoSGBM_create(minDisparity=0,
                                                  numDisparities=16,
                                                  blockSize=3,
@@ -82,7 +80,7 @@ class disparity_generator:
 def main():
     print("Began Disp Generator Node")
     rospy.init_node('disparity_generator', anonymous=False)
-    d_pub = disparity_generator("/home/advaith/Downloads/hamlyn_vids/stereo.avi", 24);
+    d_pub = disparity_generator(24);
     d_pub.generate_disp_map()
 
 main()

@@ -25,7 +25,8 @@ class img_publisher:
 
         if(not self.cap.isOpened()):
             print("Error in video file path")
-        while(self.cap.isOpened()):
+
+        while(self.cap.isOpened() and not rospy.is_shutdown()):
             try:
                 ret, frame = self.cap.read()
                 if(ret):
@@ -36,10 +37,6 @@ class img_publisher:
                     self.rate.sleep()
             except KeyboardInterrupt:
                 cv2.destroyAllWindows()
-        return
-
-
-
 
 def main():
     print("Began Image Publisher Node")

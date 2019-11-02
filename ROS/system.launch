@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="organ_slam" name="image_publisher" type="image_publisher.py">
+    </node>
+
+    <node pkg="organ_slam" name="disparity_generator" type="disparity_generator.py">
+    </node>
+
+</launch>
