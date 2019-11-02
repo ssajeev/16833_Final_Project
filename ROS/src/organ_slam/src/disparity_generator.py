@@ -70,9 +70,9 @@ class disparity_generator:
                 filtered = wls_filter.filter(d_l, left_img, None, d_r)
                 filtered = cv2.normalize(src=filtered, dst=filtered, beta=0, alpha=255, norm_type=cv2.NORM_MINMAX)
                 filtered = np.uint8(filtered)
-                filtered = cv2.applyColorMap(filtered, cv2.COLORMAP_JET)
+                #filtered = cv2.applyColorMap(filtered, cv2.COLORMAP_JET)
                 #disparity = cv2.convertScaleAbs(stereo.compute(left_img, right_img))
-                self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(filtered, "bgr8"))
+                self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(filtered, "8UC1"))
 
 
 

@@ -5,4 +5,9 @@
     <node pkg="organ_slam" name="disparity_generator" type="disparity_generator.py">
     </node>
 
+    <node pkg="organ_slam" name="temporal_filter" type="temporal_filter.py">
+    </node>
+
+    <node pkg="organ_slam" name="point_cloud_generator" type="point_cloud_generator.py" output="screen">
+    </node>
 </launch>
