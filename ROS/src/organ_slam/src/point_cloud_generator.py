@@ -13,6 +13,7 @@ from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs import point_cloud2
 from sensor_msgs.msg import PointCloud2, PointField
 from std_msgs.msg import Header
+import sensor_msgs.point_cloud2 as pcl2
 
 
 class point_cloud_generator:
@@ -34,39 +35,29 @@ class point_cloud_generator:
     def generate_point_cloud(self):
         while not rospy.is_shutdown():
             if self.first_flag:
-                cv2.imshow("d", self.disp_map_smooth)
-                cv2.waitKey(33)
+                # cv2.imshow("d", self.disp_map_smooth)
+                # cv2.waitKey(33)
                 img_size = np.shape(self.disp_map_smooth)
-                print "img_size", img_size
+
                 inds = np.indices(img_size)
-
+                self.disp_map_smooth = self.disp_map_smooth / 255.0
                 inds = np.reshape(inds, (2, img_size[0]*img_size[1])).astype(float)
-                inds[0] = inds[0]/float(img_size[0])*10.0#reshape the indices
-                inds[1] = inds[1]/float(img_size[1])*10.0*float(img_size[1])/float(img_size[0])
+                inds[0] = inds[0]/float(img_size[0])#reshape the indices
+                inds[1] = inds[1]/float(img_size[1])*float(img_size[1])/float(img_size[0])
 
-            #print inds
+                #print inds
                 depths = np.reshape(self.disp_map_smooth, (1, img_size[0]*img_size[1]))
                 #print np.shape(depths)
                 #print np.shape(inds)
                 p_data = np.concatenate((inds.T, depths.T), axis=1)
-                #print np.shape(p_data)
-                p_data = np.reshape(p_data, (1, 3*img_size[0]*img_size[1]))
-                #print p_data
 
-                msg = PointCloud2()
-                msg.header.frame_id = "map"
-                msg.height = p_data.shape[0]
-                msg.width = p_data.shape[1]
-                msg.fields = [
-                    PointField('x', 0, PointField.FLOAT32, 1),
-                    PointField('y', 4, PointField.FLOAT32, 1),
-                    PointField('z', 8, PointField.FLOAT32, 1)]
-                msg.is_bigendian = False
-                msg.point_step = 12
-                msg.row_step = 4*img_size[0]*img_size[1]
-                msg.is_dense = True
-                msg.data = np.asarray(p_data, np.float32).tostring()
-                self.point_cloud_pub.publish(msg)
+
+                header = Header()
+                header.stamp = rospy.Time.now()
+                header.frame_id = 'map'
+                pcla = pcl2.create_cloud_xyz32(header, p_data)
+                self.point_cloud_pub.publish(pcla)
+
 
 
 

@@ -10,4 +10,7 @@
 
     <node pkg="organ_slam" name="point_cloud_generator" type="point_cloud_generator.py" output="screen">
     </node>
+
+    <node pkg="organ_slam" name="visual_odometry" type="visual_odometry.py" output="screen">
+    </node>
 </launch>
