@@ -15,7 +15,7 @@ from cv_bridge import CvBridge, CvBridgeError
 class temporal_filter:
 
     def __init__(self, model_path = ""):
-        print("Sleeping for 2.0 seconds")
+        print("temporal")
         rospy.sleep(2.)
         #self.model = load_thingy
         self.bridge = CvBridge()

@@ -41,7 +41,7 @@ class img_publisher:
 def main():
     print("Began Image Publisher Node")
     rospy.init_node('img_publisher', anonymous=False)
-    ig_pub = img_publisher("/home/advaith/Downloads/hamlyn_vids/hamlyn_vid_3.avi", 10);
+    ig_pub = img_publisher("/home/advaith/Downloads/hamlyn_vids/stereo.avi", 10);
     ig_pub.pull_loop()
 
 main()

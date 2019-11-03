@@ -8,9 +8,11 @@ import numpy as np
 from sklearn.preprocessing import normalize
 import rospy
 import cv2
-from sensor_msgs.msg import Image
+import sensor_msgs.msg
 from cv_bridge import CvBridge, CvBridgeError
 from inference import *
+from PIL import Image
+
 
 l = 10000
 sigma = 1.1
@@ -18,14 +20,14 @@ visual_mult = 1.0
 
 class disparity_generator:
 
-    def __init__(self, frame_rate, model_path = ""):
-        print("Sleeping for 2.0 seconds")
-        rospy.sleep(2.)
+    def __init__(self, frame_rate, model_path):
+        print("Disparity Generator Init")
+        print("sleeping node")
         #self.model = load_thingy
         self.bridge = CvBridge()
-        self.image_feed_left = rospy.Subscriber("left_stereo", Image, self.get_left)
-        self.image_feed_right = rospy.Subscriber("right_stereo", Image, self.get_right)
-        self.disparity_pub = rospy.Publisher("disp_map_raw", Image, queue_size=10)
+        self.image_feed_left = rospy.Subscriber("left_stereo", sensor_msgs.msg.Image, self.get_left)
+        self.image_feed_right = rospy.Subscriber("right_stereo",  sensor_msgs.msg.Image, self.get_right)
+        self.disparity_pub = rospy.Publisher("disp_map_raw",  sensor_msgs.msg.Image, queue_size=10)
         self.model = load_model(model_path)
         self.rate = rospy.Rate(frame_rate)
         self.left_img = None
@@ -76,17 +78,27 @@ class disparity_generator:
                 self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(filtered, "8UC1"))
 
     def generate_smart_disparity_map(self):
+        print "test"
         while not rospy.is_shutdown():
-            depth_inference = inference(self.model, self.left_img, self.right_img)
-            self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(depth_inference, "8UC1"))
+            if(not self.l_flag or not self.r_flag):
+                continue
+            else:
+                print "in inference"
+                # channels_first_l = np.transpose(self.left_img, (2, 0, 1))
+                # channels_first_r = np.transpose(self.right_img, (2, 0, 1))
+                channels_first_l = Image.fromarray(np.uint8(self.left_img))
+                channels_first_r = Image.fromarray(np.uint8(self.right_img))
+                depth_inference = inference(self.model, channels_first_l, channels_first_r)
+                self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(depth_inference, "8UC1"))
 
 
 
 def main():
     print("Began Disp Generator Node")
     rospy.init_node('disparity_generator', anonymous=False)
-    d_pub = disparity_generator(24, '/home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/src/saved_model_10-31-2019-21_41_41.pt');
-    d_pub.generate_smart_disp_map()
+    d_pub = disparity_generator(24, '/home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/src/saved_model_10-31-2019-21_41_41.pt')
+    print "hello pls"
+    d_pub.generate_smart_disparity_map()
 
 main()
 

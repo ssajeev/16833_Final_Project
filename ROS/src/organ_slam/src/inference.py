@@ -24,7 +24,8 @@ def load_model(model_path):
 def inference(model, img_l, img_r):
 
   transform = transforms.Compose([transforms.ToTensor()])
-  output = model.forward(torch.from_numpy(img_l).unsqueeze(0), torch.from_numpy(img_l).unsqueeze(0))
+  #output = model.forward(torch.from_numpy(img_l).float().unsqueeze(0), torch.from_numpy(img_l).float().unsqueeze(0))
+  output = model.forward(transform(img_l).float().unsqueeze(0),transform(img_l).float().unsqueeze(0))
   img_l_depth, img_r_depth = model.get_depth_imgs()
   return img_l_depth
 

@@ -19,7 +19,7 @@ import sensor_msgs.point_cloud2 as pcl2
 class point_cloud_generator:
 
     def __init__(self, model_path = ""):
-        print("Sleeping for 2.0 seconds")
+        print("pcl")
         rospy.sleep(2.)
         #self.model = load_thingy
         self.bridge = CvBridge()
@@ -46,8 +46,6 @@ class point_cloud_generator:
 
                 inds = np.indices(img_size)
                 self.disp_map_smooth = self.disp_map_smooth / 255.0
-                print self.disp_map_smooth
-                return
 
                 inds = np.reshape(inds, (2, img_size[0]*img_size[1])).astype(float)
                 inds[0] = inds[0]/float(img_size[0])#reshape the indices

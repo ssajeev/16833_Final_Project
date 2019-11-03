@@ -276,11 +276,11 @@ class SiameseDepthModel(nn.Module):
     depth_r = np.transpose(depth_r, (1, 2, 0))
     disp_l = np.transpose(disp_l, (1, 2, 0))
     
-    tenth_percentile_l = np.percentile(depth_l, 2)
-    tenth_percentile_r = np.percentile(depth_r, 2)
+    tenth_percentile_l = np.percentile(depth_l, 1)
+    tenth_percentile_r = np.percentile(depth_r, 1)
     
-    ninety_percentile_l = np.percentile(depth_l, 98)
-    ninety_percentile_r = np.percentile(depth_r, 98)
+    ninety_percentile_l = np.percentile(depth_l, 99)
+    ninety_percentile_r = np.percentile(depth_r, 99)
     
     depth_l = np.clip(depth_l, tenth_percentile_l, ninety_percentile_l)
     depth_r = np.clip(depth_r, tenth_percentile_r, ninety_percentile_r)

@@ -15,7 +15,7 @@ from cv_bridge import CvBridge, CvBridgeError
 class visual_odometry:
 
     def __init__(self, model_path = ""):
-        print("Sleeping for 2.0 seconds")
+        print("vo")
         rospy.sleep(2.)
         #self.model = load_thingy
         self.bridge = CvBridge()
