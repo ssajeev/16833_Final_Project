@@ -11,14 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/inference.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/siamese_model_inf.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/siamese_model_inf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/temporal_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/temporal_filter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/system.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/system.launch" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +68,8 @@
       <workItem from="1572402041490" duration="3708000" />
       <workItem from="1572489259943" duration="6535000" />
       <workItem from="1572714823566" duration="624000" />
-      <workItem from="1572723078396" duration="26569000" />
+      <workItem from="1572723078396" duration="26884000" />
+      <workItem from="1572751639733" duration="281000" />
     </task>
     <servers />
   </component>

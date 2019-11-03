@@ -57,7 +57,6 @@ class point_cloud_generator:
                 #print np.shape(inds)
                 p_data = np.concatenate((inds.T, depths.T), axis=1)
 
-
                 header = Header()
                 header.stamp = rospy.Time.now()
                 header.frame_id = 'map'
