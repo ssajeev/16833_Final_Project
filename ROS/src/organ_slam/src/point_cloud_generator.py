@@ -24,13 +24,18 @@ class point_cloud_generator:
         #self.model = load_thingy
         self.bridge = CvBridge()
         self.disp_map_smooth_feed = rospy.Subscriber("disp_map_smooth", Image, self.get_disp_map)
+        self.rgb_feed = rospy.Subscriber("left_stereo", Image, self.get_rgb_img)
         self.point_cloud_pub = rospy.Publisher("point_cloud_smooth", PointCloud2, queue_size=2)
         self.disp_map_smooth = None
+        self.rgb_img = None
         self.first_flag = False
 
     def get_disp_map(self, data):
         self.disp_map_smooth = self.bridge.imgmsg_to_cv2(data)
         self.first_flag = True
+
+    def get_rgb_img(self, data):
+        self.rgb_img = self.bridge.imgmsg_to_cv2(data)
 
     def generate_point_cloud(self):
         while not rospy.is_shutdown():
@@ -41,6 +46,9 @@ class point_cloud_generator:
 
                 inds = np.indices(img_size)
                 self.disp_map_smooth = self.disp_map_smooth / 255.0
+                print self.disp_map_smooth
+                return
+
                 inds = np.reshape(inds, (2, img_size[0]*img_size[1])).astype(float)
                 inds[0] = inds[0]/float(img_size[0])#reshape the indices
                 inds[1] = inds[1]/float(img_size[1])*float(img_size[1])/float(img_size[0])

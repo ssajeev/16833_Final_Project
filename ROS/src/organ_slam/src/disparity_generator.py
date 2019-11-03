@@ -10,6 +10,7 @@ import rospy
 import cv2
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
+from inference import *
 
 l = 10000
 sigma = 1.1
@@ -25,7 +26,7 @@ class disparity_generator:
         self.image_feed_left = rospy.Subscriber("left_stereo", Image, self.get_left)
         self.image_feed_right = rospy.Subscriber("right_stereo", Image, self.get_right)
         self.disparity_pub = rospy.Publisher("disp_map_raw", Image, queue_size=10)
-
+        self.model = load_model(model_path)
         self.rate = rospy.Rate(frame_rate)
         self.left_img = None
         self.right_img = None
@@ -42,7 +43,7 @@ class disparity_generator:
         self.right_img = self.bridge.imgmsg_to_cv2(data)
         self.r_flag = True
 
-    def generate_disp_map(self):
+    def generate_geometric_disp_map(self):
         while not rospy.is_shutdown():
             if(not self.l_flag or not self.r_flag):
                 continue
@@ -74,14 +75,18 @@ class disparity_generator:
                 #disparity = cv2.convertScaleAbs(stereo.compute(left_img, right_img))
                 self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(filtered, "8UC1"))
 
+    def generate_smart_disparity_map(self):
+        while not rospy.is_shutdown():
+            depth_inference = inference(self.model, self.left_img, self.right_img)
+            self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(depth_inference, "8UC1"))
 
 
 
 def main():
     print("Began Disp Generator Node")
     rospy.init_node('disparity_generator', anonymous=False)
-    d_pub = disparity_generator(24);
-    d_pub.generate_disp_map()
+    d_pub = disparity_generator(24, '/home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/src/saved_model_10-31-2019-21_41_41.pt');
+    d_pub.generate_smart_disp_map()
 
 main()
 

@@ -29,13 +29,13 @@ class visual_odometry:
     def get_left(self, data):
         self.left_img = self.bridge.imgmsg_to_cv2(data)
         self.l_odom_pub.publish(self.bridge.cv2_to_imgmsg(cv2.adaptiveThreshold(cv2.cvtColor(self.left_img, cv2.COLOR_BGR2GRAY), 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                                                            cv2.THRESH_BINARY, 7, 3), "8UC1"))
+                                                                            cv2.THRESH_BINARY, 7, 5), "8UC1"))
         self.first_flag = True
 
     def get_right(self, data):
         self.right_img = self.bridge.imgmsg_to_cv2(data)
         self.r_odom_pub.publish(self.bridge.cv2_to_imgmsg(cv2.adaptiveThreshold(cv2.cvtColor(self.right_img, cv2.COLOR_BGR2GRAY), 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                              cv2.THRESH_BINARY, 7, 3), "8UC1"))
+                              cv2.THRESH_BINARY, 7, 5), "8UC1"))
         self.first_flag = True
 
 
