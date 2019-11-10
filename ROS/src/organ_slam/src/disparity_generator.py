@@ -10,8 +10,10 @@ import rospy
 import cv2
 import sensor_msgs.msg
 from cv_bridge import CvBridge, CvBridgeError
+import open3d as o3d
 from inference import *
 from PIL import Image
+
 
 
 l = 10000
@@ -21,8 +23,6 @@ visual_mult = 1.0
 class disparity_generator:
 
     def __init__(self, frame_rate, model_path):
-        print("Disparity Generator Init")
-        print("sleeping node")
         #self.model = load_thingy
         self.bridge = CvBridge()
         self.image_feed_left = rospy.Subscriber("left_stereo", sensor_msgs.msg.Image, self.get_left)
@@ -34,6 +34,8 @@ class disparity_generator:
         self.right_img = None
         self.l_flag = False
         self.r_flag = False
+        self.viz = o3d.visualization.Visualizer()
+        self.viz.create_window()
 
     def get_left(self, data):
 
@@ -46,13 +48,15 @@ class disparity_generator:
         self.r_flag = True
 
     def generate_geometric_disp_map(self):
+        pcd = o3d.geometry.PointCloud()
         while not rospy.is_shutdown():
             if(not self.l_flag or not self.r_flag):
                 continue
             else:
+                pcd.clear()
                 left_img = cv2.cvtColor(self.left_img, cv2.COLOR_BGR2GRAY)
                 right_img = cv2.cvtColor(self.right_img, cv2.COLOR_BGR2GRAY)
-
+                rgb_img = left_img
                 cv2.waitKey(33)
                 l_stereo = cv2.StereoSGBM_create(minDisparity=0,
                                                  numDisparities=16,
@@ -76,17 +80,30 @@ class disparity_generator:
                 #filtered = cv2.applyColorMap(filtered, cv2.COLORMAP_JET)
                 #disparity = cv2.convertScaleAbs(stereo.compute(left_img, right_img))
                 self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(filtered, "8UC1"))
+                rgb_img1 = o3d.geometry.Image(rgb_img)
+                filtered_o3d = o3d.geometry.Image(filtered)
+                rgbd_img = o3d.geometry.RGBDImage.create_from_color_and_depth(rgb_img1, filtered_o3d)
+                pcd = o3d.geometry.PointCloud.create_from_rgbd_image(rgbd_img, o3d.camera.PinholeCameraIntrinsic(
+                    o3d.camera.PinholeCameraIntrinsicParameters.PrimeSenseDefault))
+                flip_transform = [[1, 0, 0, -.0005], [0, -1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+                pcd.transform(flip_transform)
+                self.viz.add_geometry(pcd)
+                self.viz.update_geometry()
+                self.viz.poll_events()
+                self.viz.update_renderer()
+                rospy.sleep(.1)
 
-    def generate_smart_disparity_map(self):
-        print "test"
+    def generate_smart_disp_map(self):
         while not rospy.is_shutdown():
             if(not self.l_flag or not self.r_flag):
                 continue
             else:
-                print "in inference"
                 # channels_first_l = np.transpose(self.left_img, (2, 0, 1))
                 # channels_first_r = np.transpose(self.right_img, (2, 0, 1))
-                channels_first_l = Image.fromarray(np.uint8(self.left_img))
+                image_l_gray = cv2.cvtColor(self.left_img, cv2.COLOR_BGR2GRAY)
+                image_l_norm = cv2.equalizeHist(image_l_gray)
+                image_l_norm_color = cv2.cvtColor(image_l_norm, cv2.COLOR_GRAY2BGR)
+                channels_first_l = Image.fromarray(np.uint8(image_l_norm_color))
                 channels_first_r = Image.fromarray(np.uint8(self.right_img))
                 depth_inference = inference(self.model, channels_first_l, channels_first_r)
                 self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(depth_inference, "8UC1"))
@@ -98,7 +115,7 @@ def main():
     rospy.init_node('disparity_generator', anonymous=False)
     d_pub = disparity_generator(24, '/home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/src/saved_model_10-31-2019-21_41_41.pt')
     print "hello pls"
-    d_pub.generate_smart_disparity_map()
+    d_pub.generate_geometric_disp_map()
 
 main()
 

@@ -10,8 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/000573.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/system.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/system.launch" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +74,12 @@
       <workItem from="1572714823566" duration="624000" />
       <workItem from="1572723078396" duration="26884000" />
       <workItem from="1572751639733" duration="281000" />
+      <workItem from="1572903906688" duration="448000" />
+      <workItem from="1573059842206" duration="25000" />
+      <workItem from="1573236066360" duration="599000" />
+      <workItem from="1573323738470" duration="599000" />
+      <workItem from="1573409383980" duration="3243000" />
+      <workItem from="1573413796308" duration="4252000" />
     </task>
     <servers />
   </component>
