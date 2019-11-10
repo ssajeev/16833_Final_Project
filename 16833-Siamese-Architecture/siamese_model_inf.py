@@ -261,29 +261,38 @@ class SiameseDepthModel(nn.Module):
     self.baseline = baseline
 
   def forward(self, l_image, r_image):
-    
     disp1_l = self.depth_model.forward(l_image)
     disp1_r = self.depth_model.forward(r_image)
 
     self.depth_l = self.focal_length * self.baseline / disp1_l
     self.depth_r = self.focal_length * self.baseline / disp1_r
 
-    projected_img_l = apply_disparity(r_image, -1 * disp1_l)
-    projected_img_r = apply_disparity(l_image, disp1_r)
+    #projected_img_l = apply_disparity(r_image, -1 * disp1_l)
+    #projected_img_r = apply_disparity(l_image, disp1_r)
 
-    right_to_left_disp = apply_disparity(disp1_r, -1 * disp1_l)
-    left_to_right_disp = apply_disparity(disp1_l,  disp1_r)
+    #right_to_left_disp = apply_disparity(disp1_r, -1 * disp1_l)
+    #left_to_right_disp = apply_disparity(disp1_l,  disp1_r)
 
-    return [projected_img_l, projected_img_r, right_to_left_disp, left_to_right_disp, disp1_l, disp1_r]
+    return None #[projected_img_l, projected_img_r, right_to_left_disp, left_to_right_disp, disp1_l, disp1_r]
 
   def get_depth_imgs(self):
     depth_l = torch.Tensor.cpu(self.depth_l).detach().numpy()[-1,:,:,:]
     depth_r = torch.Tensor.cpu(self.depth_r).detach().numpy()[-1,:,:,:]
     depth_l = np.transpose(depth_l, (1, 2, 0))
     depth_r = np.transpose(depth_r, (1, 2, 0))
-
-    depth_l_img = cv2.normalize(depth_l, depth_l, 0, 255, cv2.NORM_MINMAX)
-    depth_r_img = cv2.normalize(depth_r, depth_r, 0, 255, cv2.NORM_MINMAX)
-
-    return  depth_l_img, depth_r_img
+    
+    tenth_percentile_l = np.percentile(depth_l, 1)
+    tenth_percentile_r = np.percentile(depth_r, 1)
+    
+    ninety_percentile_l = np.percentile(depth_l,99)
+    ninety_percentile_r = np.percentile(depth_r,99)
+    
+    depth_l = np.clip(depth_l, np.min(depth_l)-1, ninety_percentile_l)
+    depth_r = np.clip(depth_r, np.min(depth_r)-1, ninety_percentile_r)
+    depth_l_img = cv2.normalize(depth_l, depth_l, 0, 255, cv2.NORM_MINMAX , dtype = cv2.CV_8UC1)
+    depth_r_img = cv2.normalize(depth_r, depth_r, 0, 255, cv2.NORM_MINMAX, dtype = cv2.CV_8UC1)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+    cl1 = clahe.apply(depth_l_img)
+    cr1 = clahe.apply(depth_r_img)
+    return cl1, cr1
 

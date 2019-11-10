@@ -6,6 +6,9 @@ from PIL import Image
 from torchvision import transforms 
 from siamese_model_inf import *
 from datetime import datetime
+from tqdm import tqdm
+
+
 def load_model(model_path):
   device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
   width = 384
@@ -19,23 +22,25 @@ def load_model(model_path):
   model.eval()
   return model 
 
-def inference(model, img_l, img_r):
+def inference(model, img_l, img_r, i):
   transform = transforms.Compose([transforms.ToTensor()])
   output = model.forward(transform(img_l).unsqueeze(0), transform(img_r).unsqueeze(0))
   img_l_depth, img_r_depth = model.get_depth_imgs()
-  cv2.imwrite("saved_model_10-29-2019-23:27:09_testl.png", img_l_depth)
-  cv2.imwrite("saved_model_10-29-2019-23:27:09_testr.png", img_r_depth)
+  cv2.imwrite( str(i)+ ".png", cv2.applyColorMap(img_l_depth, cv2.COLORMAP_JET))
+  cv2.imwrite( str(i) +".png", cv2.applyColorMap(img_r_depth, cv2.COLORMAP_JET))
   return [img_l_depth, img_r_depth]
 
 
-def main():
-  model = load_model("saved_model_10-29-2019-23:27:09.pt");
-  img_1 = Image.open("daVinci/train/image_0/000300.png")
-  img_2 = Image.open("daVinci/train/image_1/000300.png")
+def run_inference():
+  model = load_model("models/saved_model_10-31-2019-23:35:45.pt");
+  #np.random.seed(1234)
+  #img_subset = np.random.choice(range(1, 7192), 10)
+  for i in tqdm(["french"]):
+      img_1 = Image.open("IMG_2880.jpg")
+      #img_2 = Image.open("daVinci/test/image_1/00"+ str(i).zfill(4) + ".png")
+      img_l_depth, img_r_depth = inference(model, img_1, img_1, i)
 
-  img1 = cv2.imread("daVinci/train/image_0/000300.png")
-  cv2.imwrite("img_test.png", img1)
-  inference(model, img_1, img_2)
+
+run_inference()
 
 
-main()
