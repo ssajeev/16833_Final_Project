@@ -34,8 +34,6 @@ class disparity_generator:
         self.right_img = None
         self.l_flag = False
         self.r_flag = False
-        self.viz = o3d.visualization.Visualizer()
-        self.viz.create_window()
 
     def get_left(self, data):
 
@@ -48,12 +46,10 @@ class disparity_generator:
         self.r_flag = True
 
     def generate_geometric_disp_map(self):
-        pcd = o3d.geometry.PointCloud()
         while not rospy.is_shutdown():
             if(not self.l_flag or not self.r_flag):
                 continue
             else:
-                pcd.clear()
                 left_img = cv2.cvtColor(self.left_img, cv2.COLOR_BGR2GRAY)
                 right_img = cv2.cvtColor(self.right_img, cv2.COLOR_BGR2GRAY)
                 rgb_img = left_img
@@ -80,17 +76,6 @@ class disparity_generator:
                 #filtered = cv2.applyColorMap(filtered, cv2.COLORMAP_JET)
                 #disparity = cv2.convertScaleAbs(stereo.compute(left_img, right_img))
                 self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(filtered, "8UC1"))
-                rgb_img1 = o3d.geometry.Image(rgb_img)
-                filtered_o3d = o3d.geometry.Image(filtered)
-                rgbd_img = o3d.geometry.RGBDImage.create_from_color_and_depth(rgb_img1, filtered_o3d)
-                pcd = o3d.geometry.PointCloud.create_from_rgbd_image(rgbd_img, o3d.camera.PinholeCameraIntrinsic(
-                    o3d.camera.PinholeCameraIntrinsicParameters.PrimeSenseDefault))
-                flip_transform = [[1, 0, 0, -.0005], [0, -1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
-                pcd.transform(flip_transform)
-                self.viz.add_geometry(pcd)
-                self.viz.update_geometry()
-                self.viz.poll_events()
-                self.viz.update_renderer()
                 rospy.sleep(.1)
 
     def generate_smart_disp_map(self):
@@ -111,10 +96,9 @@ class disparity_generator:
 
 
 def main():
-    print("Began Disp Generator Node")
     rospy.init_node('disparity_generator', anonymous=False)
     d_pub = disparity_generator(24, '/home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/src/saved_model_10-31-2019-21_41_41.pt')
-    print "hello pls"
+    rospy.loginfo("Disparity Generator Initialized")
     d_pub.generate_geometric_disp_map()
 
 main()

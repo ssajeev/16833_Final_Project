@@ -37,6 +37,7 @@ class temporal_filter:
 def main():
     rospy.init_node('temporal_filter', anonymous=False)
     t_pub = temporal_filter()
+    rospy.loginfo("Temporal Filter Initialized")
     t_pub.filter_disp_map()
 
 main()

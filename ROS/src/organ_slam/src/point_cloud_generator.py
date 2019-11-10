@@ -31,6 +31,7 @@ class point_cloud_generator:
         self.disp_map_smooth = None
         self.rgb_img = None
         self.first_flag = False
+        self.first_flag_rgb = False
 
     def get_disp_map(self, data):
         self.disp_map_smooth = self.bridge.imgmsg_to_cv2(data)
@@ -38,14 +39,21 @@ class point_cloud_generator:
 
     def get_rgb_img(self, data):
         self.rgb_img = self.bridge.imgmsg_to_cv2(data)
+        self.first_flag_rgb = True
 
     def generate_point_cloud(self):
         f = open("data_log.txt", "w+")
         while not rospy.is_shutdown():
-            if self.first_flag:
+            if self.first_flag and self.first_flag_rgb:
                 # cv2.imshow("d", self.disp_map_smooth)
                 # cv2.waitKey(33)
                 img_size = np.shape(self.disp_map_smooth)
+
+                rgb_frame = np.reshape(self.rgb_img,
+                                       (np.shape(self.rgb_img)[0]*np.shape(self.rgb_img)[1],
+                                       3))
+                alpha_
+
 
                 inds = np.indices(img_size)
                 # f.write("map:")
@@ -64,21 +72,41 @@ class point_cloud_generator:
                 # f.write(str(depths))
                 #print np.shape(depths)
                 #print np.shape(inds)
-                p_data = np.concatenate((inds.T, depths.T), axis=1)
-                # f.write("p_data:")
-                # f.write(str(p_data))
+
+                ###Pointcloud Msg Header
                 header = Header()
                 header.stamp = rospy.Time.now()
-                header.frame_id = 'map'
-                pcla = pcl2.create_cloud_xyz32(header, p_data)
-                self.point_cloud_pub.publish(pcla)
+                header.frame_id = "map"
+
+                p_data = np.concatenate((inds.T, depths.T), axis=1)
+
+                xyzrgb_data = np.concatenate((p_data, rgb_frame), axis=1)
+
+                fields = [
+                    PointField('x', 0, PointField.FLOAT32, 1),
+                    PointField('y', 4, PointField.FLOAT32, 1),
+                    PointField('z', 8, PointField.FLOAT32, 1),
+                    PointField('r', 12, PointField.FLOAT32, 1),
+                    PointField('g', 16, PointField.FLOAT32, 1),
+                    PointField('b', 20, PointField.FLOAT32, 1)
+                ]
+                pc2 = point_cloud2.create_cloud(header, fields, xyzrgb_data)
+                # f.write("p_data:")
+                # f.write(str(p_data))
+                # header = Header()
+                # header.stamp = rospy.Time.now()
+                # header.frame_id = 'map'
+                # pcla = pcl2.create_cloud_xyz32(header, p_data)
+                self.point_cloud_pub.publish(pc2)
 
 
 
 
 def main():
+
     rospy.init_node('point_cloud_generator', anonymous=False)
     d_pub = point_cloud_generator()
+    rospy.loginfo("Point Cloud Generator Initialized")
     d_pub.generate_point_cloud()
 
 main()

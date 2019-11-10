@@ -10,12 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/000573.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/system.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/system.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/temporal_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/temporal_filter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,6 +79,7 @@
       <workItem from="1573323738470" duration="599000" />
       <workItem from="1573409383980" duration="3243000" />
       <workItem from="1573413796308" duration="4252000" />
+      <workItem from="1573418328890" duration="7204000" />
     </task>
     <servers />
   </component>
