@@ -278,17 +278,20 @@ class SiameseDepthModel(nn.Module):
   def get_depth_imgs(self):
     depth_l = torch.Tensor.cpu(self.depth_l).detach().numpy()[-1,:,:,:]
     depth_r = torch.Tensor.cpu(self.depth_r).detach().numpy()[-1,:,:,:]
-    depth_l = np.transpose(depth_l, (1, 2, 0))
+    disp_l = torch.Tensor.cpu(self.disp1_l).detach().numpy()[-1,:,:,:]
+    depth_l = np.transpose(-1*depth_l, (1, 2, 0))
     depth_r = np.transpose(depth_r, (1, 2, 0))
+    disp_l = np.transpose(disp_l, (1, 2, 0))
     
-    tenth_percentile_l = np.percentile(depth_l, 1)
-    tenth_percentile_r = np.percentile(depth_r, 1)
+    tenth_percentile_l = np.percentile(depth_l, 2)
+    tenth_percentile_r = np.percentile(depth_r, 2)
     
-    ninety_percentile_l = np.percentile(depth_l,99)
-    ninety_percentile_r = np.percentile(depth_r,99)
+    ninety_percentile_l = np.percentile(depth_l, 98)
+    ninety_percentile_r = np.percentile(depth_r, 98)
     
-    depth_l = np.clip(depth_l, np.min(depth_l)-1, ninety_percentile_l)
-    depth_r = np.clip(depth_r, np.min(depth_r)-1, ninety_percentile_r)
+    depth_l = np.clip(depth_l, tenth_percentile_l, ninety_percentile_l)
+    depth_r = np.clip(depth_r, tenth_percentile_r, ninety_percentile_r)
+    
     depth_l_img = cv2.normalize(depth_l, depth_l, 0, 255, cv2.NORM_MINMAX , dtype = cv2.CV_8UC1)
     depth_r_img = cv2.normalize(depth_r, depth_r, 0, 255, cv2.NORM_MINMAX, dtype = cv2.CV_8UC1)
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))

@@ -26,8 +26,8 @@ def inference(model, img_l, img_r, i):
   transform = transforms.Compose([transforms.ToTensor()])
   output = model.forward(transform(img_l).unsqueeze(0), transform(img_r).unsqueeze(0))
   img_l_depth, img_r_depth = model.get_depth_imgs()
-  cv2.imwrite( str(i)+ ".png", cv2.applyColorMap(img_l_depth, cv2.COLORMAP_JET))
-  cv2.imwrite( str(i) +".png", cv2.applyColorMap(img_r_depth, cv2.COLORMAP_JET))
+  cv2.imwrite("output/saved_model_10-31-2019-03:05:09/"+ str(i)+ ".png", cv2.applyColorMap(img_l_depth, cv2.COLORMAP_JET))
+  cv2.imwrite("output_r/saved_model_10-31-2019-03:05:09/"+ str(i) +".png", cv2.applyColorMap(img_r_depth, cv2.COLORMAP_JET))
   return [img_l_depth, img_r_depth]
 
 
