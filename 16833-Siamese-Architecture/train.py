@@ -15,7 +15,7 @@ from siamese_model import *
 ROOT_DIR = 'data/images/'
 BATCH_SIZE = 16
 NUM_WORKERS = 4
-EPOCHS = 100
+EPOCHS = 50
 LEARNING_RATE = 0.001
 
 class cummalative_loss(nn.Module):
@@ -25,6 +25,28 @@ class cummalative_loss(nn.Module):
     self.beta = beta
     self.c = c
 
+  def gradient_x(self, img):
+    gx = img[:,:,:-1,:] - img[:,:,1:,:]
+    return gx
+  
+  def gradient_y(self, img):
+    gy = img[:,:-1,:,:] - img[:,1:,:,:]
+    return gy
+
+  def disparity_smoothness(self, disp, pyramid ):
+    disp_gradients_x = [self.gradient_x(d) for d in disp]
+    disp_gradients_y = [self.gradient_y(d) for d in disp]
+
+    image_gradients_x = [self.gradient_x(img) for img in pyramid]
+    image_gradients_y = [self.gradient_y(img) for img in pyramid]
+
+    weights_x = [torch.exp(-1*torch.mean(torch.abs(g), 3, keep_dims=True)) for g in image_gradients_x]
+    weights_y = [torch.exp(-1*torch.mean(torch.abs(g), 3, keep_dims=True)) for g in image_gradients_y]
+
+    smoothness_x = disp_gradients_x * weights_x
+    smoothness_y = disp_gradients_y * weights_y
+    return smoothness_x + smoothness_y
+ 
   def SSI(self, x, y):
     C1 = 6.5025
     C2 = 58.5225
@@ -50,7 +72,6 @@ class cummalative_loss(nn.Module):
     app_loss = (1 - ((A / B)).mean())
     return app_loss
 
-
   def forward(self, left_img, right_img, projected_img_l, projected_img_r,
               right_to_left_disp, left_to_right_disp, disp1_l, disp1_r):
 
@@ -70,7 +91,11 @@ class cummalative_loss(nn.Module):
     lr_left_loss = torch.mean(torch.abs(disp1_l - right_to_left_disp))
     lr_right_loss = torch.mean(torch.abs(disp1_r - left_to_right_disp))
     lr_loss = lr_left_loss + lr_right_loss
-
+    
+    #Disparity Smoothing 
+    #disp_left_loss  = torch.mean(torch.abs(disp_left_smoothness))
+    #disp_right_loss = torch.mean(torch.abs(disp_right_smoothness))
+    #disp_gradient_loss = disp_left_loss + disp_right_loss
     total_loss = self.c*lr_loss + loss_left + loss_right
 
     return total_loss
@@ -111,6 +136,7 @@ def main():
 
   model = SiameseDepthModel(width, height, focal_length, baseline)
   model.cuda()
+  model.load_state_dict(torch.load("models/hist_model_epoch_21.pt"))
   model = model.train()
   for param in model.parameters():
     param.requires_grad = True
@@ -121,8 +147,8 @@ def main():
     param.requires_grad = True
 
   optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
-
   for epoch in range(EPOCHS):
+    epoch_loss = 0
     print("Epoch: ", epoch)
     t = tqdm(iter(dataset_loader), leave=False, total=len(dataset_loader))
     for i, batch_input in enumerate(t):
@@ -135,9 +161,11 @@ def main():
               right_to_left_disp, left_to_right_disp, disp1_l, disp1_r)
       loss.backward()
       optimizer.step()
-    print("Loss: ", loss)
 
-    MODEL_SAVE_PATH = "saved_model_" + datetime.datetime.now().strftime("%m-%d-%Y-%H:%M:%S") + ".pt"
+      epoch_loss += loss.item()
+
+    print("Loss: ", epoch_loss/len(dataset_loader))
+    MODEL_SAVE_PATH = "models/inpaint_hist_model_epoch_" + str(epoch) + ".pt"
     torch.save(model.state_dict(), MODEL_SAVE_PATH)
 
   pass

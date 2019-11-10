@@ -10,6 +10,25 @@ from torchvision import transforms, utils
 import cv2
 from PIL import Image
 
+
+def apply_image_preprocessing(img):
+
+  #Removes the white parts of the image and applies content-aware fill
+  lower = np.array([254, 254, 254])  #-- Lower range --
+  upper = np.array([255, 255, 255])  #-- Upper range --
+  mask = cv2.inRange(img, lower, upper)
+
+  mask_result = np.average(cv2.bitwise_and(img, img, mask= mask), 2).astype('uint8')
+
+  img = cv2.inpaint(img, mask_result , 3 ,cv2.INPAINT_TELEA)
+
+  #Historgram equalization
+  img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+  img_norm = cv2.equalizeHist(img_gray)
+  img_norm_color = cv2.cvtColor(img_norm, cv2.COLOR_GRAY2BGR)
+
+  return img_norm_color
+
 class EndoscopicDataset(Dataset):
   """Hamlyn Endoscopic Surgery Images Dataset."""
 
@@ -36,12 +55,15 @@ class EndoscopicDataset(Dataset):
 
     img_name_l = os.path.join(self.root_dir, 'image_0',
                             self.meta_frame.iloc[idx, 1])
-    image_l = Image.open(img_name_l)
+    image_l = cv2.imread(img_name_l)
+    image_l = apply_image_preprocessing(image_l)
+    image_l = Image.fromarray(image_l)
 
     img_name_r = os.path.join(self.root_dir, 'image_1',
                               self.meta_frame.iloc[idx, 1])
-    image_r = Image.open(img_name_r)
-
+    image_r = cv2.imread(img_name_r)
+    image_r = apply_image_preprocessing(image_r)
+    image_r = Image.fromarray(image_r)
     sample = {'image_l': image_l, 'image_r': image_r}
 
     if self.transform:
