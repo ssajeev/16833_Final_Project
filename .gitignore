@@ -22,3 +22,4 @@ build/
 *~
 lib/
 rgbd_dataset_freiburg1_xyz
+ROS/src/organ_slam/src/*.pt
