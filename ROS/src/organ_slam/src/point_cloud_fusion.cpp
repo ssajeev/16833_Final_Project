@@ -46,7 +46,7 @@ class PointCloudFusion {
     }
 
   public:
-    PointCloudFusion(const std::string& base_frame_id, const ros::Publisher& pub) : pub_(pub) {
+    PointCloudFusion(const std::string& base_frame_id, const ros::Publisher& pub_new) : pub(pub_new) {
       set_base_frame_id(base_frame_id);
     }
     ~PointCloudFusion() { }
@@ -102,14 +102,13 @@ class PointCloudFusion {
 int main (int argc, char** argv)
 {
   // Initialize ROS
-  ros::init (argc, argv, "pcl_fuse");
+  ros::init (argc, argv, "point_cloud_fusion");
   ros::NodeHandle nh;
 
   // Create a publisher for the fused data and create a PointCloudFusion object to do it.
-  PointCloudFusion fusion("/odom", nh.advertise<sensor_msgs::PointCloud2>("/fused_points", 1));
-
+  PointCloudFusion fusion("base_frame", nh.advertise<sensor_msgs::PointCloud2>("fusion_point", 1));
   // Create a ROS subscriber for the input point cloud
-  ros::Subscriber sub = nh.subscribe("/camera/depth/points", 1, &PointCloudFusion::add_cloud, &fusion);
+  ros::Subscriber sub = nh.subscribe("point_cloud_smooth", 2, &PointCloudFusion::add_cloud, &fusion);
 
   // Spin
   ros::spin ();
