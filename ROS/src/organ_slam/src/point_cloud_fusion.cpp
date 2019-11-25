@@ -13,6 +13,8 @@
 #include <sensor_msgs/PointCloud2.h>
 #include <tf/transform_listener.h>
 
+#include <point_cloud_fusion.h>
+
 class PointCloudFusion {
   protected:
     // This is primarily to save on typing(!)
@@ -30,7 +32,7 @@ class PointCloudFusion {
     ros::Publisher pub;
 
     // publish the fused cloud
-    void publish_() const {
+    void publish() const {
       // temporary PointCloud2 intermediary
       pcl::PCLPointCloud2 tmp_pc;
 
@@ -38,6 +40,7 @@ class PointCloudFusion {
       pcl::toPCLPointCloud2(fused_cloud, tmp_pc);
       sensor_msgs::PointCloud2 published_pc;
       pcl_conversions::fromPCL(tmp_pc, published_pc);
+
 
       published_pc.header.frame_id = base_frame_id;
 
@@ -76,23 +79,34 @@ class PointCloudFusion {
         ROS_WARN("Dropping input point cloud");
         return;
       }
-
       // Convert ROS point cloud to PCL point cloud
       // See http://wiki.ros.org/hydro/Migration for the source of this magic.
       pcl_conversions::toPCL(trans_ros_pc, tmp_pc);
 
+      pcl::PointCloud<pcl::PointXYZRGB>::Ptr final (new pcl::PointCloud<pcl::PointXYZRGB>);
+      std::vector<int> inliers;
+
+      // created RandomSampleConsensus object and compute the appropriated model
+      pcl::SampleConsensusModelSphere<pcl::PointXYZ>::Ptr
+        model_s(new pcl::SampleConsensusModelSphere<pcl::PointXYZ> (tmp_pc));
+      pcl::SampleConsensusModelPlane<pcl::PointXYZ>::Ptr
+        model_p (new pcl::SampleConsensusModelPlane<pcl::PointXYZ> (tmp_pc));
+
+      pcl::RandomSampleConsensus<pcl::PointXYZ> ransac (model_s);
+      ransac.setDistanceThreshold (.01);
+      ransac.computeModel();
+      ransac.getInliers(inliers);
+
+      // copies all inliers of the model computed to another PointCloud
+      pcl::copyPointCloud (tmp_pc, inliers, *final);
+
+
       // Convert point cloud to PCL native point cloud
       point_cloud_t input;
-      pcl::fromPCLPointCloud2(tmp_pc, input);
+      pcl::fromPCLPointCloud2(*final, input);
 
       // Fuse
       fused_cloud += input;
-
-      // Implemment icp
-      pcl::IterativeCLosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
-      icp.setInputSource(input)
-      icp.setInputTarget(fused_cloud)
-      pcl::PointCloud<pcl::PointXYZ> Final;
 
       // Publish fused cloud
       publish();
