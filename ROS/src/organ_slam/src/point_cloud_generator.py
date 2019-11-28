@@ -52,7 +52,7 @@ class point_cloud_generator:
                 rgb_frame = np.reshape(self.rgb_img,
                                        (np.shape(self.rgb_img)[0]*np.shape(self.rgb_img)[1],
                                        3))
-                alpha_
+
 
 
                 inds = np.indices(img_size)

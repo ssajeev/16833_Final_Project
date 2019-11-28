@@ -13,4 +13,9 @@
 
     <node pkg="organ_slam" name="disparity_generator" type="disparity_generator.py" output="screen">
     </node>
+
+<!--    <node pkg="viso2_ros" type="stereo_odometer" name="stereo_odometer" output="screen">\-->
+<!--        <param name="max_features" value="10" />-->
+<!--        <param name="motion_threshold" value="350" />-->
+<!--    </node>-->
 </launch>
