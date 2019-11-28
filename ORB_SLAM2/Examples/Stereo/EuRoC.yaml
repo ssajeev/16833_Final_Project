@@ -5,18 +5,18 @@
 #--------------------------------------------------------------------------------------------
 
 # Camera calibration and distortion parameters (OpenCV) 
-Camera.fx: 381.914307
-Camera.fy: 383.797882
-Camera.cx: 168.108963
-Camera.cy: 126.979446
+Camera.fx: 755.312744
+Camera.fy: 420.477722
+Camera.cx: 327.875000
+Camera.cy: 165.484406
 
 Camera.k1: 0.0
 Camera.k2: 0.0
 Camera.p1: 0.0
 Camera.p2: 0.0
 
-Camera.width: 320
-Camera.height: 240
+Camera.width: 1024
+Camera.height: 600
 
 # Camera frames per second 
 Camera.fps: 24.0
@@ -34,8 +34,8 @@ ThDepth: 35
 # Stereo Rectification. Only if you need to pre-rectify the images.
 # Camera.fx, .fy, etc must be the same as in LEFT.P
 #--------------------------------------------------------------------------------------------
-LEFT.height: 240
-LEFT.width: 320
+LEFT.height: 600
+LEFT.width: 1024
 LEFT.D: !!opencv-matrix
    rows: 1
    cols: 5
@@ -57,8 +57,8 @@ LEFT.P:  !!opencv-matrix
    dt: d
    data: [435.2046959714599, 0, 367.4517211914062, 0,  0, 435.2046959714599, 252.2008514404297, 0,  0, 0, 1, 0]
 
-RIGHT.height: 240
-RIGHT.width: 320
+RIGHT.height: 600
+RIGHT.width: 1024
 RIGHT.D: !!opencv-matrix
    rows: 1
    cols: 5

@@ -11,12 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EuRoC.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/EuRoC.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Stereo" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Stereo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/ros_stereo.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/ros_stereo.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Stereo/EuRoC.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Stereo/EuRoC.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +86,7 @@
       <workItem from="1573750183375" duration="21000" />
       <workItem from="1574624204655" duration="1717000" />
       <workItem from="1574626478704" duration="1797000" />
-      <workItem from="1574968906466" duration="12929000" />
+      <workItem from="1574968906466" duration="14052000" />
     </task>
     <servers />
   </component>
