@@ -10,17 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EuRoC.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/EuRoC.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/_setup_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/share/organ_slam/cmake/organ_slamConfig.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/share/organ_slam/cmake/organ_slamConfig.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/system.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/system.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Stereo" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Stereo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/ros_stereo.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/ros_stereo.cc" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +88,7 @@
       <workItem from="1573750183375" duration="21000" />
       <workItem from="1574624204655" duration="1717000" />
       <workItem from="1574626478704" duration="1797000" />
-      <workItem from="1574968906466" duration="7980000" />
+      <workItem from="1574968906466" duration="12929000" />
     </task>
     <servers />
   </component>

@@ -15,8 +15,8 @@ Camera.k2: 0.0
 Camera.p1: 0.0
 Camera.p2: 0.0
 
-Camera.width: 320
-Camera.height: 240
+Camera.width: 288
+Camera.height: 720
 
 # Camera frames per second 
 Camera.fps: 24.0
@@ -34,8 +34,8 @@ ThDepth: 35
 # Stereo Rectification. Only if you need to pre-rectify the images.
 # Camera.fx, .fy, etc must be the same as in LEFT.P
 #--------------------------------------------------------------------------------------------
-LEFT.height: 240
-LEFT.width: 320
+LEFT.height: 720
+LEFT.width: 288
 LEFT.D: !!opencv-matrix
    rows: 1
    cols: 5
@@ -85,7 +85,7 @@ RIGHT.P:  !!opencv-matrix
 #--------------------------------------------------------------------------------------------
 
 # ORB Extractor: Number of features per image
-ORBextractor.nFeatures: 10000
+ORBextractor.nFeatures: 1000
 
 # ORB Extractor: Scale factor between levels in the scale pyramid 	
 ORBextractor.scaleFactor: 1.2
