@@ -3,7 +3,10 @@
 #include <functional>
 #include <string>
 
+#include <pcl/PCLPointCloud2.h>
 #include <pcl/conversions.h>
+#include <pcl/sample_consensus/sac_model_sphere.h>
+#include <pcl/sample_consensus/sac_model_plane.h>
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
@@ -12,8 +15,11 @@
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <tf/transform_listener.h>
+#include <pcl/sample_consensus/ransac.h>
+#include <pcl/common/copy_point.h>
+#include <pcl/common/io.h>
 
-#include <point_cloud_fusion.h>
+//#include <point_cloud_fusion.h>
 
 class PointCloudFusion {
   protected:
@@ -27,7 +33,7 @@ class PointCloudFusion {
     tf::TransformListener tf_listener;
 
     // The name of the base frame
-    std::string  base_frame_id;
+    std::string  base_frame_id_cur;
 
     ros::Publisher pub;
 
@@ -42,7 +48,7 @@ class PointCloudFusion {
       pcl_conversions::fromPCL(tmp_pc, published_pc);
 
 
-      published_pc.header.frame_id = base_frame_id;
+      published_pc.header.frame_id = base_frame_id_cur;
 
       // Publish the data
       pub.publish(published_pc);
@@ -50,12 +56,12 @@ class PointCloudFusion {
 
   public:
     PointCloudFusion(const std::string& base_frame_id, const ros::Publisher& pub_new) : pub(pub_new) {
-      set_base_frame_id(base_frame_id);
+      set_base_frame_id(base_frame_id_cur);
     }
     ~PointCloudFusion() { }
 
     // get the base frame id
-    const std::string base_frame_id() const { return base_frame_id; }
+    const std::string base_frame_id() const { return base_frame_id_cur; }
 
     // update base frame id - this will reset the fused point cloud
     void set_base_frame_id(const std::string& new_base_frame_id) {
@@ -63,7 +69,7 @@ class PointCloudFusion {
       fused_cloud.clear();
 
       // record new frame
-      base_frame_id = new_base_frame_id;
+      base_frame_id_cur = new_base_frame_id;
     }
 
     // callback when a new point cloud is available
@@ -74,23 +80,22 @@ class PointCloudFusion {
 
       // transform the point cloud into base_frame_id
       sensor_msgs::PointCloud2 trans_ros_pc;
-      if(!pcl_ros::transformPointCloud(base_frame_id, ros_pc, trans_ros_pc, tf_listener)) {
+      //if(!pcl_ros::transformPointCloud(base_frame_id, ros_pc, trans_ros_pc, tf_listener)) {
         // Failed to transform
-        ROS_WARN("Dropping input point cloud");
-        return;
-      }
+      //   ROS_WARN("Dropping input point cloud");
+      //  return;
+      //}
       // Convert ROS point cloud to PCL point cloud
       // See http://wiki.ros.org/hydro/Migration for the source of this magic.
       pcl_conversions::toPCL(trans_ros_pc, tmp_pc);
 
       pcl::PointCloud<pcl::PointXYZRGB>::Ptr final (new pcl::PointCloud<pcl::PointXYZRGB>);
+      pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud (tmp_pc);
       std::vector<int> inliers;
 
       // created RandomSampleConsensus object and compute the appropriated model
       pcl::SampleConsensusModelSphere<pcl::PointXYZ>::Ptr
-        model_s(new pcl::SampleConsensusModelSphere<pcl::PointXYZ> (tmp_pc));
-      pcl::SampleConsensusModelPlane<pcl::PointXYZ>::Ptr
-        model_p (new pcl::SampleConsensusModelPlane<pcl::PointXYZ> (tmp_pc));
+        model_s(new pcl::SampleConsensusModelSphere<pcl::PointXYZ> (cloud));
 
       pcl::RandomSampleConsensus<pcl::PointXYZ> ransac (model_s);
       ransac.setDistanceThreshold (.01);
@@ -98,7 +103,7 @@ class PointCloudFusion {
       ransac.getInliers(inliers);
 
       // copies all inliers of the model computed to another PointCloud
-      pcl::copyPointCloud (tmp_pc, inliers, *final);
+      pcl::copyPointCloud (*cloud, inliers, *final);
 
 
       // Convert point cloud to PCL native point cloud

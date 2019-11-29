@@ -1,8 +1,4 @@
 
-// #ifndef SR_NODE_EXAMPLE_CORE_H
-// #define SR_NODE_EXAMPLE_CORE_H
-
-// ROS includes.
 #include "ros/ros.h"
 #include "ros/time.h"
 

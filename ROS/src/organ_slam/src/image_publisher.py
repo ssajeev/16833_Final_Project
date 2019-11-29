@@ -89,7 +89,7 @@ class img_publisher:
 def main():
 
     rospy.init_node('img_publisher', anonymous=False)
-    ig_pub = img_publisher("/home/advaith/Downloads/hamlyn_vids/stereo.avi", 10)
+    ig_pub = img_publisher("/home/ubuntu/Downloads/stereo.avi", 10)
     rospy.loginfo("Image Publish Initialized")
     ig_pub.pull_loop()
 
