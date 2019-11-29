@@ -1,0 +1,2 @@
+organ_slam:viso2/libviso2:viso2/viso2:viso2/viso2_ros
+-DCATKIN_DEVEL_PREFIX=/home/advaith/Documents/16833_Final_Project/ROS/devel -DCMAKE_INSTALL_PREFIX=/home/advaith/Documents/16833_Final_Project/ROS/install -G Unix Makefiles
