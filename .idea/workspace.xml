@@ -9,7 +9,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="" />
+    <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Stereo/EuRoC.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Stereo/EuRoC.yaml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +36,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Su8IYRkrtYIn2bxzkNVq9BeXFb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -74,6 +81,12 @@
       <workItem from="1573409383980" duration="3243000" />
       <workItem from="1573413796308" duration="4252000" />
       <workItem from="1573418328890" duration="7956000" />
+      <workItem from="1573582400844" duration="32000" />
+      <workItem from="1573583809072" duration="672000" />
+      <workItem from="1573750183375" duration="21000" />
+      <workItem from="1574624204655" duration="1717000" />
+      <workItem from="1574626478704" duration="1797000" />
+      <workItem from="1574968906466" duration="14052000" />
     </task>
     <servers />
   </component>
