@@ -40,52 +40,18 @@ def pcl_to_ros(pcl_array):
         Returns:
             PointCloud2: A ROS point cloud
     """
-    ros_msg = PointCloud2()
+    header = Header()
+    header.stamp = rospy.Time.now()
+    header.frame_id = "global"
+    
+    fields = [
+        PointField('x', 0, PointField.FLOAT32, 1),
+        PointField('y', 4, PointField.FLOAT32, 1),
+        PointField('z', 8, PointField.FLOAT32, 1),
+    ]
 
-    ros_msg.header.stamp = rospy.Time.now()
-    ros_msg.header.frame_id = "world"
-
-    ros_msg.height = 1
-    ros_msg.width = pcl_array.size
-
-    ros_msg.fields.append(PointField(
-                            name="x",
-                            offset=0,
-                            datatype=PointField.FLOAT32, count=1))
-    ros_msg.fields.append(PointField(
-                            name="y",
-                            offset=4,
-                            datatype=PointField.FLOAT32, count=1))
-    ros_msg.fields.append(PointField(
-                            name="z",
-                            offset=8,
-                            datatype=PointField.FLOAT32, count=1))
-    ros_msg.fields.append(PointField(
-                            name="rgb",
-                            offset=16,
-                            datatype=PointField.FLOAT32, count=1))
-
-    ros_msg.is_bigendian = False
-    ros_msg.point_step = 32
-    ros_msg.row_step = ros_msg.point_step * ros_msg.width * ros_msg.height
-    ros_msg.is_dense = False
-    buffer = []
-
-    for data in pcl_array:
-        #s = struct.pack('>f', data[3])
-        #i = struct.unpack('>l', s)[0]
-        #pack = ctypes.c_uint32(i).value
-
-        #r = (pack & 0x00FF0000) >> 16
-        #g = (pack & 0x0000FF00) >> 8
-        #b = (pack & 0x000000FF)
-        r, g, b = random_color_gen()
-
-        buffer.append(struct.pack('ffffBBBBIII', data[0], data[1], data[2], 1.0, b, g, r, 0, 0, 0, 0))
-
-    ros_msg.data = "".join(buffer)
-
-    return ros_msg
+    pc2_cloud = point_cloud2.create_cloud(header, fields, pcl_array.to_array())
+    return pc2_cloud
 
 def ros_to_pcl(ros_cloud):
     """ Converts a ROS PointCloud2 message to a pcl PointXYZRGB
