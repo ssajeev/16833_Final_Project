@@ -44,12 +44,20 @@ class point_cloud_generator:
         self.righty = TransformStamped()
         self.righty.header.frame_id = "base_link"
         self.righty.child_frame_id = "base_link"
-        quat = quaternion_from_euler(3.14, 1.57, 1.57)
+        quat = quaternion_from_euler(0.0, 0.0, 1.57)
         self.righty.transform.rotation.x = quat[0]
         self.righty.transform.rotation.y = quat[1]
         self.righty.transform.rotation.z = quat[2]
         self.righty.transform.rotation.w = quat[3]
-        self.righty.transform.translation = Vector3(-0.5, 1.0, .5)
+        self.transl = TransformStamped()
+        self.transl.header.frame_id = "base_link"
+        self.transl.child_frame_id = "base_link"
+        quat = quaternion_from_euler(0.0, 0.0, 0.0)
+        self.transl.transform.rotation.x = quat[0]
+        self.transl.transform.rotation.y = quat[1]
+        self.transl.transform.rotation.z = quat[2]
+        self.transl.transform.rotation.w = quat[3]
+        self.transl.transform.translation = Vector3(-.5, -0.5, 0.0)
 
 
     def get_disp_map(self, data):
@@ -66,7 +74,7 @@ class point_cloud_generator:
             if self.first_flag and self.first_flag_rgb:
                 img_size = np.shape(self.disp_map_smooth)
 
-                rgb_frame = np.reshape(self.rgb_img,
+                rgb_frame = np.reshape(self.rgb_img / 255.0,
                                        (np.shape(self.rgb_img)[0]*np.shape(self.rgb_img)[1],
                                        3))
                 inds = np.indices(img_size)
@@ -77,11 +85,14 @@ class point_cloud_generator:
                 # f.write(str(self.disp_map_smooth))
                 inds = np.reshape(inds, (2, img_size[0]*img_size[1])).astype(float)
 
-                inds[0] = inds[0]/float(img_size[0])#reshape the indices
-                inds[1] = inds[1]/float(img_size[1])*float(img_size[1])/float(img_size[0])
+                #x = y, y = -x
+                tmp = np.copy(inds[0])
+                inds[0] = inds[1]/float(img_size[1])*float(img_size[1])/float(img_size[0]) - float(img_size[1])/float(img_size[0])/2.0
+                      #reshape the indices
+                inds[1] = -(tmp/float(img_size[0]) - 1.0/2.0)
 
                 #print inds
-                depths = np.reshape(self.disp_map_smooth, (1, img_size[0]*img_size[1])) / 255.0
+                depths = -1.0*np.reshape(255 - self.disp_map_smooth, (1, img_size[0]*img_size[1])) / 255.0
                 # f.write("resae:")
                 # f.write(str(depths))
                 #print np.shape(depths)
@@ -100,8 +111,8 @@ class point_cloud_generator:
                     PointField('x', 0, PointField.FLOAT32, 1),
                     PointField('y', 4, PointField.FLOAT32, 1),
                     PointField('z', 8, PointField.FLOAT32, 1),
-                    PointField('g', 12, PointField.FLOAT32, 1),
-                    PointField('b', 16, PointField.FLOAT32, 1),
+                    PointField('b', 12, PointField.FLOAT32, 1),
+                    PointField('g', 16, PointField.FLOAT32, 1),
                     PointField('r', 20, PointField.FLOAT32, 1)
                 ]
                 pc2 = point_cloud2.create_cloud(header, fields, xyzrgb_data)
@@ -112,15 +123,18 @@ class point_cloud_generator:
                 # header.stamp = rospy.Time.now()
                 # header.frame_id = 'map'
                 # pcla = pcl2.create_cloud_xyz32(header, p_data)
-                pc2 = do_transform_cloud(pc2, self.righty)
+                #pc2 = do_transform_cloud(pc2, self.transl)
+
                 try:
                     trans = self.tf_buffer.lookup_transform("base_link", "map", rospy.Time(0))
                     pc2 = do_transform_cloud(pc2, trans)
-
+                    self.point_cloud_pub.publish(pc2)
+                    continue
                 except tf2.LookupException as ex:
                     rospy.logwarn(ex)
                 except tf2.ExtrapolationException as ex:
                     rospy.logwarn(ex)
+
                 self.point_cloud_pub.publish(pc2)
 
 

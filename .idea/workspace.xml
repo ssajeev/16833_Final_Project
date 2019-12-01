@@ -13,11 +13,40 @@
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/EuRoC.yaml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/frames.gv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/frames.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/Stereo" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/Stereo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/Stereo.dir/src/ros_stereo.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/Stereo.dir/src/ros_stereo.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/atomic_configure/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/atomic_configure/_setup_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/catkin_generated/generate_cached_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/catkin_generated/generate_cached_setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/catkin_generated/installspace/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/catkin_generated/installspace/_setup_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/catkin_generated/setup_cached.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/catkin_generated/setup_cached.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/catkin_generated/stamps/ORB_SLAM2/_setup_util.py.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/catkin_generated/stamps/ORB_SLAM2/_setup_util.py.stamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/devel/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/devel/_setup_util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock_main.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock_main.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock_main.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/CMakeFiles/gmock_main.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_stereo.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_stereo.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/FrameTrajectory_KITTI_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/FrameTrajectory_KITTI_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/FrameTrajectory_TUM_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/KeyFrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/KeyFrameTrajectory_TUM_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" afterDir="false" />
@@ -25,6 +54,7 @@
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/param/camera_pinhole.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/param/camera_pinhole.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_vikit" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_vikit" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_vikit/vikit_common/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_vikit/vikit_common/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/system.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/system.launch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sophus" beforeDir="false" afterPath="$PROJECT_DIR$/Sophus" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sophus/sophus/so2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sophus/sophus/so2.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpg_svo" beforeDir="false" afterPath="$PROJECT_DIR$/rpg_svo" afterDir="false" />
@@ -104,7 +134,7 @@
       <workItem from="1574626478704" duration="1797000" />
       <workItem from="1574968906466" duration="15640000" />
       <workItem from="1575146693298" duration="8982000" />
-      <workItem from="1575168629306" duration="6568000" />
+      <workItem from="1575168629306" duration="13352000" />
     </task>
     <servers />
   </component>

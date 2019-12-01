@@ -7,5 +7,3 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/devel:/opt/ros/melodic"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/devel/share/common-lisp"

@@ -14,6 +14,9 @@
     <node pkg="organ_slam" name="disparity_generator" type="disparity_generator.py" output="screen">
     </node>
 
+    <node type="rviz" name="rviz" pkg="rviz" args="-d /home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/project_conf.rviz" >
+    </node>
+
 <!--    <node pkg="organ_slam" name="point_fusion" type="point_fusion.py" output="screen">-->
 <!--    </node>-->
 

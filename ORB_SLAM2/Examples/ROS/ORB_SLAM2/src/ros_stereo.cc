@@ -186,7 +186,7 @@ void ImageGrabber::GrabStereo(const sensor_msgs::ImageConstPtr& msgLeft,const se
         this->br.sendTransform(tf::StampedTransform(new_transform, ros::Time::now(), "map", "base_link")); 
     }
     catch(int e){
-        cout << "Caugh error: " << e <<std::endl;
+        cout << "Caught error: " << e << std::endl;
     }
     // tf::poseTFToMsg(new_transform, pose.pose);
     // this->pose_pub.publish(pose);
