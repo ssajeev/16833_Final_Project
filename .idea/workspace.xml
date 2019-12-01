@@ -10,57 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_fusion.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_fusion.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_fusion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Stereo/EuRoC.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Stereo/EuRoC.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Stereo" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/Stereo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/CMakeFiles/CMakeRuleHashes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/CMakeFiles/CMakeRuleHashes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/CTestTestfile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/CTestTestfile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/atomic_configure/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/atomic_configure/_setup_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/catkin_generated/generate_cached_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/catkin_generated/generate_cached_setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/catkin_generated/installspace/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/catkin_generated/installspace/_setup_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/catkin_generated/order_packages.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/catkin_generated/order_packages.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/catkin_generated/order_packages.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/catkin_generated/order_packages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/catkin_generated/setup_cached.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/catkin_generated/setup_cached.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/catkin_generated/stamps/Project/_setup_util.py.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/catkin_generated/stamps/Project/_setup_util.py.stamp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/catkin_make.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/catkin_make.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/gtest/googlemock/CMakeFiles/gmock.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/gtest/googlemock/CMakeFiles/gmock.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/gtest/googlemock/CMakeFiles/gmock_main.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/gtest/googlemock/CMakeFiles/gmock_main.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/organ_slam/catkin_generated/installspace/organ_slamConfig.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/organ_slam/catkin_generated/installspace/organ_slamConfig.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/libviso2/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/libviso2/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/libviso2/CMakeFiles/viso2.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/libviso2/CMakeFiles/viso2.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/libviso2/catkin_generated/installspace/libviso2Config.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/libviso2/catkin_generated/installspace/libviso2Config.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_cpp.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_cpp.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_eus.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_eus.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_lisp.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_lisp.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_nodejs.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_nodejs.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_py.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/CMakeFiles/viso2_ros_generate_messages_py.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/catkin_generated/installspace/viso2_rosConfig.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/build/viso2/viso2_ros/catkin_generated/installspace/viso2_rosConfig.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/devel/.catkin" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/.catkin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/devel/.rosinstall" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/.rosinstall" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/devel/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/_setup_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/share/libviso2/cmake/libviso2Config.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/share/libviso2/cmake/libviso2Config.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/devel/local_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/local_setup.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/devel/setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/setup.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/devel/share/organ_slam/cmake/organ_slamConfig.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/share/organ_slam/cmake/organ_slamConfig.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/share/viso2_ros/cmake/viso2_rosConfig.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/share/viso2_ros/cmake/viso2_rosConfig.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/launch/test_rig3.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/launch/test_rig3.launch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/param/camera_pinhole.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/param/camera_pinhole.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/rpg_vikit" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_vikit" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_vikit/vikit_common/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_vikit/vikit_common/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/system.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/system.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sophus" beforeDir="false" afterPath="$PROJECT_DIR$/Sophus" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sophus/sophus/so2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sophus/sophus/so2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpg_svo" beforeDir="false" afterPath="$PROJECT_DIR$/rpg_svo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpg_svo/svo_ros/launch/test_rig3.launch" beforeDir="false" afterPath="$PROJECT_DIR$/rpg_svo/svo_ros/launch/test_rig3.launch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpg_svo/svo_ros/param/camera_pinhole.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rpg_svo/svo_ros/param/camera_pinhole.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpg_svo/svo_ros/src/vo_node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rpg_svo/svo_ros/src/vo_node.cpp" afterDir="false" />
@@ -136,7 +109,7 @@
       <workItem from="1574624204655" duration="1717000" />
       <workItem from="1574626478704" duration="1797000" />
       <workItem from="1574968906466" duration="15640000" />
-      <workItem from="1575146693298" duration="7575000" />
+      <workItem from="1575146693298" duration="8443000" />
     </task>
     <servers />
   </component>

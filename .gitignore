@@ -19,3 +19,5 @@ lib/
 rgbd_dataset_freiburg1_xyz
 ROS/src/organ_slam/src/*.pt
 *.bag
+ROS/devel/_setup_util.py
+ROS/devel/share/organ_slam/cmake/organ_slamConfig.cmake
