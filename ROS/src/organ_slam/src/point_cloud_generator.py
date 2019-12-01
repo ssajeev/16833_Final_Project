@@ -44,12 +44,12 @@ class point_cloud_generator:
         self.righty = TransformStamped()
         self.righty.header.frame_id = "base_link"
         self.righty.child_frame_id = "base_link"
-        quat = quaternion_from_euler(0.0, 0.0, 1.57)
+        quat = quaternion_from_euler(3.14, 1.57, 1.57)
         self.righty.transform.rotation.x = quat[0]
         self.righty.transform.rotation.y = quat[1]
         self.righty.transform.rotation.z = quat[2]
         self.righty.transform.rotation.w = quat[3]
-        self.righty.transform.translation = Vector3(0, 0, 0)
+        self.righty.transform.translation = Vector3(-0.5, 1.0, .5)
 
 
     def get_disp_map(self, data):
