@@ -40,7 +40,6 @@ class point_cloud_generator:
         self.first_flag = False
         self.first_flag_rgb = False
         self.prev_cloud = PointCloud2()
-        rospy.sleep(20)
 
 
     def get_disp_map(self, data):
@@ -110,14 +109,13 @@ class point_cloud_generator:
                 # pcla = pcl2.create_cloud_xyz32(header, p_data)
                 try:
                     trans = self.tf_buffer.lookup_transform("base_link", "map", rospy.Time(0))
+                    pc2 = do_transform_cloud(pc2, trans)
                 except tf2.LookupException as ex:
                     rospy.logwarn(ex)
-                    return
                 except tf2.ExtrapolationException as ex:
                     rospy.logwarn(ex)
-                    return
-                cloud_out = do_transform_cloud(pc2, trans)
-                self.point_cloud_pub.publish(cloud_out)
+
+                self.point_cloud_pub.publish(pc2)
 
 
 
