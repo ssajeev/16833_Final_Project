@@ -40,7 +40,7 @@ class point_cloud_generator:
         self.first_flag = False
         self.first_flag_rgb = False
         self.prev_cloud = PointCloud2()
-        rospy.sleep(10)
+        rospy.sleep(20)
 
 
     def get_disp_map(self, data):

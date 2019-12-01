@@ -10,20 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_fusion.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_fusion.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_fusion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/.catkin" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/.catkin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/.rosinstall" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/.rosinstall" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/_setup_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/_setup_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/local_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/local_setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/devel/share/organ_slam/cmake/organ_slamConfig.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/devel/share/organ_slam/cmake/organ_slamConfig.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/KeyFrameTrajectory_TUM_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/launch/test_rig3.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/launch/test_rig3.launch" afterDir="false" />
@@ -109,7 +103,8 @@
       <workItem from="1574624204655" duration="1717000" />
       <workItem from="1574626478704" duration="1797000" />
       <workItem from="1574968906466" duration="15640000" />
-      <workItem from="1575146693298" duration="8443000" />
+      <workItem from="1575146693298" duration="8982000" />
+      <workItem from="1575168629306" duration="325000" />
     </task>
     <servers />
   </component>
