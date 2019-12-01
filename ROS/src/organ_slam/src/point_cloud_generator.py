@@ -16,7 +16,8 @@ from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs import point_cloud2
 from sensor_msgs.msg import PointCloud2, PointField
 from std_msgs.msg import Header
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import *
+from tf.transformations import *
 import sensor_msgs.point_cloud2 as pcl2
 import open3d as o3d
 
@@ -40,6 +41,9 @@ class point_cloud_generator:
         self.first_flag = False
         self.first_flag_rgb = False
         self.prev_cloud = PointCloud2()
+        self.righty = TransformStamped()
+        self.righty.transform.rotation = quaternion_from_euler(90, 0, 0)
+        self.righty.transform.translation = Vector3(0.0, 0.0, 0.0)
 
 
     def get_disp_map(self, data):
@@ -110,11 +114,12 @@ class point_cloud_generator:
                 try:
                     trans = self.tf_buffer.lookup_transform("base_link", "map", rospy.Time(0))
                     pc2 = do_transform_cloud(pc2, trans)
+
                 except tf2.LookupException as ex:
                     rospy.logwarn(ex)
                 except tf2.ExtrapolationException as ex:
                     rospy.logwarn(ex)
-
+                pc2 = do_transform_cloud(pc2, self.righty)
                 self.point_cloud_pub.publish(pc2)
 
 

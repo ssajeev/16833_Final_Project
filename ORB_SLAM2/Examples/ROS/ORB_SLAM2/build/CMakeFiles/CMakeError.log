@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp
+Change Dir: /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fc38e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_fc38e.dir/build.make CMakeFiles/cmTC_fc38e.dir/build
-make[1]: Entering directory '/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_fc38e.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_fc38e.dir/CheckSymbolExists.c.o   -c /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_fc38e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fc38e.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_fc38e.dir/CheckSymbolExists.c.o  -o cmTC_fc38e 
-CMakeFiles/cmTC_fc38e.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:"/usr/bin/make" "cmTC_22d6e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_22d6e.dir/build.make CMakeFiles/cmTC_22d6e.dir/build
+make[1]: Entering directory '/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_22d6e.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_22d6e.dir/CheckSymbolExists.c.o   -c /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_22d6e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_22d6e.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_22d6e.dir/CheckSymbolExists.c.o  -o cmTC_22d6e 
+CMakeFiles/cmTC_22d6e.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_fc38e.dir/build.make:97: recipe for target 'cmTC_fc38e' failed
-make[1]: *** [cmTC_fc38e] Error 1
-make[1]: Leaving directory '/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_fc38e/fast' failed
-make: *** [cmTC_fc38e/fast] Error 2
+CMakeFiles/cmTC_22d6e.dir/build.make:97: recipe for target 'cmTC_22d6e' failed
+make[1]: *** [cmTC_22d6e] Error 1
+make[1]: Leaving directory '/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_22d6e/fast' failed
+make: *** [cmTC_22d6e/fast] Error 2
 
-File /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp
+Change Dir: /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fca15/fast"
-/usr/bin/make -f CMakeFiles/cmTC_fca15.dir/build.make CMakeFiles/cmTC_fca15.dir/build
-make[1]: Entering directory '/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_fca15.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_fca15.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
-Linking C executable cmTC_fca15
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fca15.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_fca15.dir/CheckFunctionExists.c.o  -o cmTC_fca15 -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_bfa87/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bfa87.dir/build.make CMakeFiles/cmTC_bfa87.dir/build
+make[1]: Entering directory '/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bfa87.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_bfa87.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_bfa87
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bfa87.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_bfa87.dir/CheckFunctionExists.c.o  -o cmTC_bfa87 -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_fca15.dir/build.make:97: recipe for target 'cmTC_fca15' failed
-make[1]: *** [cmTC_fca15] Error 1
-make[1]: Leaving directory '/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_fca15/fast' failed
-make: *** [cmTC_fca15/fast] Error 2
+CMakeFiles/cmTC_bfa87.dir/build.make:97: recipe for target 'cmTC_bfa87' failed
+make[1]: *** [cmTC_bfa87] Error 1
+make[1]: Leaving directory '/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_bfa87/fast' failed
+make: *** [cmTC_bfa87/fast] Error 2
 
 

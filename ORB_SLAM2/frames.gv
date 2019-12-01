@@ -1,0 +1,9 @@
+digraph G {
+"base_link" -> "left_cam"[label="Broadcaster: /image_publisher\nAverage rate: 10.212 Hz\nMost recent transform: 1575148003.994 ( 0.063 sec old)\nBuffer length: 4.896 sec\n"];
+"base_link" -> "right_cam"[label="Broadcaster: /image_publisher\nAverage rate: 10.215 Hz\nMost recent transform: 1575148003.994 ( 0.063 sec old)\nBuffer length: 4.895 sec\n"];
+"base_link" -> "map"[label="Broadcaster: /RGBD\nAverage rate: 2.927 Hz\nMost recent transform: 1575148003.866 ( 0.190 sec old)\nBuffer length: 4.441 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1575148004.056"[ shape=plaintext ] ;
+ }->"base_link";
+}

@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
 # Source directory: /usr/src/googletest
-# Build directory: /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest
+# Build directory: /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/gtest
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

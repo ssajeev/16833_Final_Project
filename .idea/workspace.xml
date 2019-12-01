@@ -11,6 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="524a8856-e948-451d-803e-90760ee6769f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_KITTI_Format.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FrameTrajectory_TUM_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" afterDir="false" />
@@ -97,7 +99,7 @@
       <workItem from="1574626478704" duration="1797000" />
       <workItem from="1574968906466" duration="15640000" />
       <workItem from="1575146693298" duration="8982000" />
-      <workItem from="1575168629306" duration="747000" />
+      <workItem from="1575168629306" duration="2516000" />
     </task>
     <servers />
   </component>

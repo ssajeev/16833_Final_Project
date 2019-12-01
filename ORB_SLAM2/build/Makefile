@@ -48,36 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2
+CMAKE_SOURCE_DIR = /home/advaith/Documents/16833_Final_Project/ORB_SLAM2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build
+CMAKE_BINARY_DIR = /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/build
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -90,45 +67,22 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/build/CMakeFiles /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/advaith/Documents/16833_Final_Project/ORB_SLAM2/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -157,503 +111,770 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named RGBD
+# Target rules for targets named mono_euroc
 
 # Build rule for target.
-RGBD: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 RGBD
-.PHONY : RGBD
+mono_euroc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mono_euroc
+.PHONY : mono_euroc
 
 # fast build rule for target.
-RGBD/fast:
-	$(MAKE) -f CMakeFiles/RGBD.dir/build.make CMakeFiles/RGBD.dir/build
-.PHONY : RGBD/fast
+mono_euroc/fast:
+	$(MAKE) -f CMakeFiles/mono_euroc.dir/build.make CMakeFiles/mono_euroc.dir/build
+.PHONY : mono_euroc/fast
 
 #=============================================================================
-# Target rules for targets named Stereo
+# Target rules for targets named rgbd_tum
 
 # Build rule for target.
-Stereo: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Stereo
-.PHONY : Stereo
+rgbd_tum: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rgbd_tum
+.PHONY : rgbd_tum
 
 # fast build rule for target.
-Stereo/fast:
-	$(MAKE) -f CMakeFiles/Stereo.dir/build.make CMakeFiles/Stereo.dir/build
-.PHONY : Stereo/fast
+rgbd_tum/fast:
+	$(MAKE) -f CMakeFiles/rgbd_tum.dir/build.make CMakeFiles/rgbd_tum.dir/build
+.PHONY : rgbd_tum/fast
 
 #=============================================================================
-# Target rules for targets named ROSBUILD_genmsg_lisp
+# Target rules for targets named mono_kitti
 
 # Build rule for target.
-ROSBUILD_genmsg_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ROSBUILD_genmsg_lisp
-.PHONY : ROSBUILD_genmsg_lisp
+mono_kitti: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mono_kitti
+.PHONY : mono_kitti
 
 # fast build rule for target.
-ROSBUILD_genmsg_lisp/fast:
-	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_lisp.dir/build.make CMakeFiles/ROSBUILD_genmsg_lisp.dir/build
-.PHONY : ROSBUILD_genmsg_lisp/fast
+mono_kitti/fast:
+	$(MAKE) -f CMakeFiles/mono_kitti.dir/build.make CMakeFiles/mono_kitti.dir/build
+.PHONY : mono_kitti/fast
 
 #=============================================================================
-# Target rules for targets named ROSBUILD_genmsg_cpp
+# Target rules for targets named stereo_kitti
 
 # Build rule for target.
-ROSBUILD_genmsg_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ROSBUILD_genmsg_cpp
-.PHONY : ROSBUILD_genmsg_cpp
+stereo_kitti: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 stereo_kitti
+.PHONY : stereo_kitti
 
 # fast build rule for target.
-ROSBUILD_genmsg_cpp/fast:
-	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make CMakeFiles/ROSBUILD_genmsg_cpp.dir/build
-.PHONY : ROSBUILD_genmsg_cpp/fast
+stereo_kitti/fast:
+	$(MAKE) -f CMakeFiles/stereo_kitti.dir/build.make CMakeFiles/stereo_kitti.dir/build
+.PHONY : stereo_kitti/fast
 
 #=============================================================================
-# Target rules for targets named test-results-run
+# Target rules for targets named stereo_euroc
 
 # Build rule for target.
-test-results-run: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test-results-run
-.PHONY : test-results-run
+stereo_euroc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 stereo_euroc
+.PHONY : stereo_euroc
 
 # fast build rule for target.
-test-results-run/fast:
-	$(MAKE) -f CMakeFiles/test-results-run.dir/build.make CMakeFiles/test-results-run.dir/build
-.PHONY : test-results-run/fast
+stereo_euroc/fast:
+	$(MAKE) -f CMakeFiles/stereo_euroc.dir/build.make CMakeFiles/stereo_euroc.dir/build
+.PHONY : stereo_euroc/fast
 
 #=============================================================================
-# Target rules for targets named rosbuild_premsgsrvgen
+# Target rules for targets named ORB_SLAM2
 
 # Build rule for target.
-rosbuild_premsgsrvgen: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosbuild_premsgsrvgen
-.PHONY : rosbuild_premsgsrvgen
+ORB_SLAM2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ORB_SLAM2
+.PHONY : ORB_SLAM2
 
 # fast build rule for target.
-rosbuild_premsgsrvgen/fast:
-	$(MAKE) -f CMakeFiles/rosbuild_premsgsrvgen.dir/build.make CMakeFiles/rosbuild_premsgsrvgen.dir/build
-.PHONY : rosbuild_premsgsrvgen/fast
+ORB_SLAM2/fast:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/build
+.PHONY : ORB_SLAM2/fast
 
 #=============================================================================
-# Target rules for targets named ROSBUILD_gensrv_cpp
+# Target rules for targets named mono_tum
 
 # Build rule for target.
-ROSBUILD_gensrv_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ROSBUILD_gensrv_cpp
-.PHONY : ROSBUILD_gensrv_cpp
+mono_tum: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mono_tum
+.PHONY : mono_tum
 
 # fast build rule for target.
-ROSBUILD_gensrv_cpp/fast:
-	$(MAKE) -f CMakeFiles/ROSBUILD_gensrv_cpp.dir/build.make CMakeFiles/ROSBUILD_gensrv_cpp.dir/build
-.PHONY : ROSBUILD_gensrv_cpp/fast
+mono_tum/fast:
+	$(MAKE) -f CMakeFiles/mono_tum.dir/build.make CMakeFiles/mono_tum.dir/build
+.PHONY : mono_tum/fast
 
-#=============================================================================
-# Target rules for targets named tests
+Examples/Monocular/mono_euroc.o: Examples/Monocular/mono_euroc.cc.o
 
-# Build rule for target.
-tests: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tests
-.PHONY : tests
-
-# fast build rule for target.
-tests/fast:
-	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
-.PHONY : tests/fast
-
-#=============================================================================
-# Target rules for targets named test-results
-
-# Build rule for target.
-test-results: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test-results
-.PHONY : test-results
-
-# fast build rule for target.
-test-results/fast:
-	$(MAKE) -f CMakeFiles/test-results.dir/build.make CMakeFiles/test-results.dir/build
-.PHONY : test-results/fast
-
-#=============================================================================
-# Target rules for targets named rospack_gensrv
-
-# Build rule for target.
-rospack_gensrv: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rospack_gensrv
-.PHONY : rospack_gensrv
-
-# fast build rule for target.
-rospack_gensrv/fast:
-	$(MAKE) -f CMakeFiles/rospack_gensrv.dir/build.make CMakeFiles/rospack_gensrv.dir/build
-.PHONY : rospack_gensrv/fast
-
-#=============================================================================
-# Target rules for targets named test-future
-
-# Build rule for target.
-test-future: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test-future
-.PHONY : test-future
-
-# fast build rule for target.
-test-future/fast:
-	$(MAKE) -f CMakeFiles/test-future.dir/build.make CMakeFiles/test-future.dir/build
-.PHONY : test-future/fast
-
-#=============================================================================
-# Target rules for targets named Mono
-
-# Build rule for target.
-Mono: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Mono
-.PHONY : Mono
-
-# fast build rule for target.
-Mono/fast:
-	$(MAKE) -f CMakeFiles/Mono.dir/build.make CMakeFiles/Mono.dir/build
-.PHONY : Mono/fast
-
-#=============================================================================
-# Target rules for targets named rospack_genmsg_libexe
-
-# Build rule for target.
-rospack_genmsg_libexe: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rospack_genmsg_libexe
-.PHONY : rospack_genmsg_libexe
-
-# fast build rule for target.
-rospack_genmsg_libexe/fast:
-	$(MAKE) -f CMakeFiles/rospack_genmsg_libexe.dir/build.make CMakeFiles/rospack_genmsg_libexe.dir/build
-.PHONY : rospack_genmsg_libexe/fast
-
-#=============================================================================
-# Target rules for targets named MonoAR
-
-# Build rule for target.
-MonoAR: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 MonoAR
-.PHONY : MonoAR
-
-# fast build rule for target.
-MonoAR/fast:
-	$(MAKE) -f CMakeFiles/MonoAR.dir/build.make CMakeFiles/MonoAR.dir/build
-.PHONY : MonoAR/fast
-
-#=============================================================================
-# Target rules for targets named rosbuild_clean-test-results
-
-# Build rule for target.
-rosbuild_clean-test-results: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosbuild_clean-test-results
-.PHONY : rosbuild_clean-test-results
-
-# fast build rule for target.
-rosbuild_clean-test-results/fast:
-	$(MAKE) -f CMakeFiles/rosbuild_clean-test-results.dir/build.make CMakeFiles/rosbuild_clean-test-results.dir/build
-.PHONY : rosbuild_clean-test-results/fast
-
-#=============================================================================
-# Target rules for targets named ROSBUILD_gensrv_lisp
-
-# Build rule for target.
-ROSBUILD_gensrv_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ROSBUILD_gensrv_lisp
-.PHONY : ROSBUILD_gensrv_lisp
-
-# fast build rule for target.
-ROSBUILD_gensrv_lisp/fast:
-	$(MAKE) -f CMakeFiles/ROSBUILD_gensrv_lisp.dir/build.make CMakeFiles/ROSBUILD_gensrv_lisp.dir/build
-.PHONY : ROSBUILD_gensrv_lisp/fast
-
-#=============================================================================
-# Target rules for targets named test
-
-# Build rule for target.
-test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test
-.PHONY : test
-
-# fast build rule for target.
-test/fast:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
-.PHONY : test/fast
-
-#=============================================================================
-# Target rules for targets named rospack_genmsg
-
-# Build rule for target.
-rospack_genmsg: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rospack_genmsg
-.PHONY : rospack_genmsg
-
-# fast build rule for target.
-rospack_genmsg/fast:
-	$(MAKE) -f CMakeFiles/rospack_genmsg.dir/build.make CMakeFiles/rospack_genmsg.dir/build
-.PHONY : rospack_genmsg/fast
-
-#=============================================================================
-# Target rules for targets named rosbuild_precompile
-
-# Build rule for target.
-rosbuild_precompile: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosbuild_precompile
-.PHONY : rosbuild_precompile
-
-# fast build rule for target.
-rosbuild_precompile/fast:
-	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/build
-.PHONY : rosbuild_precompile/fast
-
-#=============================================================================
-# Target rules for targets named doxygen
-
-# Build rule for target.
-doxygen: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 doxygen
-.PHONY : doxygen
-
-# fast build rule for target.
-doxygen/fast:
-	$(MAKE) -f CMakeFiles/doxygen.dir/build.make CMakeFiles/doxygen.dir/build
-.PHONY : doxygen/fast
-
-#=============================================================================
-# Target rules for targets named run_tests
-
-# Build rule for target.
-run_tests: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 run_tests
-.PHONY : run_tests
-
-# fast build rule for target.
-run_tests/fast:
-	$(MAKE) -f CMakeFiles/run_tests.dir/build.make CMakeFiles/run_tests.dir/build
-.PHONY : run_tests/fast
-
-#=============================================================================
-# Target rules for targets named download_extra_data
-
-# Build rule for target.
-download_extra_data: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 download_extra_data
-.PHONY : download_extra_data
-
-# fast build rule for target.
-download_extra_data/fast:
-	$(MAKE) -f CMakeFiles/download_extra_data.dir/build.make CMakeFiles/download_extra_data.dir/build
-.PHONY : download_extra_data/fast
-
-#=============================================================================
-# Target rules for targets named _catkin_empty_exported_target
-
-# Build rule for target.
-_catkin_empty_exported_target: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _catkin_empty_exported_target
-.PHONY : _catkin_empty_exported_target
-
-# fast build rule for target.
-_catkin_empty_exported_target/fast:
-	$(MAKE) -f CMakeFiles/_catkin_empty_exported_target.dir/build.make CMakeFiles/_catkin_empty_exported_target.dir/build
-.PHONY : _catkin_empty_exported_target/fast
-
-#=============================================================================
-# Target rules for targets named clean_test_results
-
-# Build rule for target.
-clean_test_results: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 clean_test_results
-.PHONY : clean_test_results
-
-# fast build rule for target.
-clean_test_results/fast:
-	$(MAKE) -f CMakeFiles/clean_test_results.dir/build.make CMakeFiles/clean_test_results.dir/build
-.PHONY : clean_test_results/fast
-
-#=============================================================================
-# Target rules for targets named gmock_main
-
-# Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gmock_main
-.PHONY : gmock_main
-
-# fast build rule for target.
-gmock_main/fast:
-	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
-.PHONY : gmock_main/fast
-
-#=============================================================================
-# Target rules for targets named gmock
-
-# Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gmock
-.PHONY : gmock
-
-# fast build rule for target.
-gmock/fast:
-	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
-
-#=============================================================================
-# Target rules for targets named gtest_main
-
-# Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gtest_main
-.PHONY : gtest_main
-
-# fast build rule for target.
-gtest_main/fast:
-	$(MAKE) -f gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
-
-#=============================================================================
-# Target rules for targets named gtest
-
-# Build rule for target.
-gtest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gtest
-.PHONY : gtest
-
-# fast build rule for target.
-gtest/fast:
-	$(MAKE) -f gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
-.PHONY : gtest/fast
-
-src/AR/ViewerAR.o: src/AR/ViewerAR.cc.o
-
-.PHONY : src/AR/ViewerAR.o
+.PHONY : Examples/Monocular/mono_euroc.o
 
 # target to build an object file
-src/AR/ViewerAR.cc.o:
-	$(MAKE) -f CMakeFiles/MonoAR.dir/build.make CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.o
-.PHONY : src/AR/ViewerAR.cc.o
+Examples/Monocular/mono_euroc.cc.o:
+	$(MAKE) -f CMakeFiles/mono_euroc.dir/build.make CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.o
+.PHONY : Examples/Monocular/mono_euroc.cc.o
 
-src/AR/ViewerAR.i: src/AR/ViewerAR.cc.i
+Examples/Monocular/mono_euroc.i: Examples/Monocular/mono_euroc.cc.i
 
-.PHONY : src/AR/ViewerAR.i
+.PHONY : Examples/Monocular/mono_euroc.i
 
 # target to preprocess a source file
-src/AR/ViewerAR.cc.i:
-	$(MAKE) -f CMakeFiles/MonoAR.dir/build.make CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.i
-.PHONY : src/AR/ViewerAR.cc.i
+Examples/Monocular/mono_euroc.cc.i:
+	$(MAKE) -f CMakeFiles/mono_euroc.dir/build.make CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.i
+.PHONY : Examples/Monocular/mono_euroc.cc.i
 
-src/AR/ViewerAR.s: src/AR/ViewerAR.cc.s
+Examples/Monocular/mono_euroc.s: Examples/Monocular/mono_euroc.cc.s
 
-.PHONY : src/AR/ViewerAR.s
+.PHONY : Examples/Monocular/mono_euroc.s
 
 # target to generate assembly for a file
-src/AR/ViewerAR.cc.s:
-	$(MAKE) -f CMakeFiles/MonoAR.dir/build.make CMakeFiles/MonoAR.dir/src/AR/ViewerAR.cc.s
-.PHONY : src/AR/ViewerAR.cc.s
+Examples/Monocular/mono_euroc.cc.s:
+	$(MAKE) -f CMakeFiles/mono_euroc.dir/build.make CMakeFiles/mono_euroc.dir/Examples/Monocular/mono_euroc.cc.s
+.PHONY : Examples/Monocular/mono_euroc.cc.s
 
-src/AR/ros_mono_ar.o: src/AR/ros_mono_ar.cc.o
+Examples/Monocular/mono_kitti.o: Examples/Monocular/mono_kitti.cc.o
 
-.PHONY : src/AR/ros_mono_ar.o
+.PHONY : Examples/Monocular/mono_kitti.o
 
 # target to build an object file
-src/AR/ros_mono_ar.cc.o:
-	$(MAKE) -f CMakeFiles/MonoAR.dir/build.make CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.o
-.PHONY : src/AR/ros_mono_ar.cc.o
+Examples/Monocular/mono_kitti.cc.o:
+	$(MAKE) -f CMakeFiles/mono_kitti.dir/build.make CMakeFiles/mono_kitti.dir/Examples/Monocular/mono_kitti.cc.o
+.PHONY : Examples/Monocular/mono_kitti.cc.o
 
-src/AR/ros_mono_ar.i: src/AR/ros_mono_ar.cc.i
+Examples/Monocular/mono_kitti.i: Examples/Monocular/mono_kitti.cc.i
 
-.PHONY : src/AR/ros_mono_ar.i
+.PHONY : Examples/Monocular/mono_kitti.i
 
 # target to preprocess a source file
-src/AR/ros_mono_ar.cc.i:
-	$(MAKE) -f CMakeFiles/MonoAR.dir/build.make CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.i
-.PHONY : src/AR/ros_mono_ar.cc.i
+Examples/Monocular/mono_kitti.cc.i:
+	$(MAKE) -f CMakeFiles/mono_kitti.dir/build.make CMakeFiles/mono_kitti.dir/Examples/Monocular/mono_kitti.cc.i
+.PHONY : Examples/Monocular/mono_kitti.cc.i
 
-src/AR/ros_mono_ar.s: src/AR/ros_mono_ar.cc.s
+Examples/Monocular/mono_kitti.s: Examples/Monocular/mono_kitti.cc.s
 
-.PHONY : src/AR/ros_mono_ar.s
+.PHONY : Examples/Monocular/mono_kitti.s
 
 # target to generate assembly for a file
-src/AR/ros_mono_ar.cc.s:
-	$(MAKE) -f CMakeFiles/MonoAR.dir/build.make CMakeFiles/MonoAR.dir/src/AR/ros_mono_ar.cc.s
-.PHONY : src/AR/ros_mono_ar.cc.s
+Examples/Monocular/mono_kitti.cc.s:
+	$(MAKE) -f CMakeFiles/mono_kitti.dir/build.make CMakeFiles/mono_kitti.dir/Examples/Monocular/mono_kitti.cc.s
+.PHONY : Examples/Monocular/mono_kitti.cc.s
 
-src/ros_mono.o: src/ros_mono.cc.o
+Examples/Monocular/mono_tum.o: Examples/Monocular/mono_tum.cc.o
 
-.PHONY : src/ros_mono.o
+.PHONY : Examples/Monocular/mono_tum.o
 
 # target to build an object file
-src/ros_mono.cc.o:
-	$(MAKE) -f CMakeFiles/Mono.dir/build.make CMakeFiles/Mono.dir/src/ros_mono.cc.o
-.PHONY : src/ros_mono.cc.o
+Examples/Monocular/mono_tum.cc.o:
+	$(MAKE) -f CMakeFiles/mono_tum.dir/build.make CMakeFiles/mono_tum.dir/Examples/Monocular/mono_tum.cc.o
+.PHONY : Examples/Monocular/mono_tum.cc.o
 
-src/ros_mono.i: src/ros_mono.cc.i
+Examples/Monocular/mono_tum.i: Examples/Monocular/mono_tum.cc.i
 
-.PHONY : src/ros_mono.i
+.PHONY : Examples/Monocular/mono_tum.i
 
 # target to preprocess a source file
-src/ros_mono.cc.i:
-	$(MAKE) -f CMakeFiles/Mono.dir/build.make CMakeFiles/Mono.dir/src/ros_mono.cc.i
-.PHONY : src/ros_mono.cc.i
+Examples/Monocular/mono_tum.cc.i:
+	$(MAKE) -f CMakeFiles/mono_tum.dir/build.make CMakeFiles/mono_tum.dir/Examples/Monocular/mono_tum.cc.i
+.PHONY : Examples/Monocular/mono_tum.cc.i
 
-src/ros_mono.s: src/ros_mono.cc.s
+Examples/Monocular/mono_tum.s: Examples/Monocular/mono_tum.cc.s
 
-.PHONY : src/ros_mono.s
+.PHONY : Examples/Monocular/mono_tum.s
 
 # target to generate assembly for a file
-src/ros_mono.cc.s:
-	$(MAKE) -f CMakeFiles/Mono.dir/build.make CMakeFiles/Mono.dir/src/ros_mono.cc.s
-.PHONY : src/ros_mono.cc.s
+Examples/Monocular/mono_tum.cc.s:
+	$(MAKE) -f CMakeFiles/mono_tum.dir/build.make CMakeFiles/mono_tum.dir/Examples/Monocular/mono_tum.cc.s
+.PHONY : Examples/Monocular/mono_tum.cc.s
 
-src/ros_rgbd.o: src/ros_rgbd.cc.o
+Examples/RGB-D/rgbd_tum.o: Examples/RGB-D/rgbd_tum.cc.o
 
-.PHONY : src/ros_rgbd.o
+.PHONY : Examples/RGB-D/rgbd_tum.o
 
 # target to build an object file
-src/ros_rgbd.cc.o:
-	$(MAKE) -f CMakeFiles/RGBD.dir/build.make CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o
-.PHONY : src/ros_rgbd.cc.o
+Examples/RGB-D/rgbd_tum.cc.o:
+	$(MAKE) -f CMakeFiles/rgbd_tum.dir/build.make CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.o
+.PHONY : Examples/RGB-D/rgbd_tum.cc.o
 
-src/ros_rgbd.i: src/ros_rgbd.cc.i
+Examples/RGB-D/rgbd_tum.i: Examples/RGB-D/rgbd_tum.cc.i
 
-.PHONY : src/ros_rgbd.i
+.PHONY : Examples/RGB-D/rgbd_tum.i
 
 # target to preprocess a source file
-src/ros_rgbd.cc.i:
-	$(MAKE) -f CMakeFiles/RGBD.dir/build.make CMakeFiles/RGBD.dir/src/ros_rgbd.cc.i
-.PHONY : src/ros_rgbd.cc.i
+Examples/RGB-D/rgbd_tum.cc.i:
+	$(MAKE) -f CMakeFiles/rgbd_tum.dir/build.make CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.i
+.PHONY : Examples/RGB-D/rgbd_tum.cc.i
 
-src/ros_rgbd.s: src/ros_rgbd.cc.s
+Examples/RGB-D/rgbd_tum.s: Examples/RGB-D/rgbd_tum.cc.s
 
-.PHONY : src/ros_rgbd.s
+.PHONY : Examples/RGB-D/rgbd_tum.s
 
 # target to generate assembly for a file
-src/ros_rgbd.cc.s:
-	$(MAKE) -f CMakeFiles/RGBD.dir/build.make CMakeFiles/RGBD.dir/src/ros_rgbd.cc.s
-.PHONY : src/ros_rgbd.cc.s
+Examples/RGB-D/rgbd_tum.cc.s:
+	$(MAKE) -f CMakeFiles/rgbd_tum.dir/build.make CMakeFiles/rgbd_tum.dir/Examples/RGB-D/rgbd_tum.cc.s
+.PHONY : Examples/RGB-D/rgbd_tum.cc.s
 
-src/ros_stereo.o: src/ros_stereo.cc.o
+Examples/Stereo/stereo_euroc.o: Examples/Stereo/stereo_euroc.cc.o
 
-.PHONY : src/ros_stereo.o
+.PHONY : Examples/Stereo/stereo_euroc.o
 
 # target to build an object file
-src/ros_stereo.cc.o:
-	$(MAKE) -f CMakeFiles/Stereo.dir/build.make CMakeFiles/Stereo.dir/src/ros_stereo.cc.o
-.PHONY : src/ros_stereo.cc.o
+Examples/Stereo/stereo_euroc.cc.o:
+	$(MAKE) -f CMakeFiles/stereo_euroc.dir/build.make CMakeFiles/stereo_euroc.dir/Examples/Stereo/stereo_euroc.cc.o
+.PHONY : Examples/Stereo/stereo_euroc.cc.o
 
-src/ros_stereo.i: src/ros_stereo.cc.i
+Examples/Stereo/stereo_euroc.i: Examples/Stereo/stereo_euroc.cc.i
 
-.PHONY : src/ros_stereo.i
+.PHONY : Examples/Stereo/stereo_euroc.i
 
 # target to preprocess a source file
-src/ros_stereo.cc.i:
-	$(MAKE) -f CMakeFiles/Stereo.dir/build.make CMakeFiles/Stereo.dir/src/ros_stereo.cc.i
-.PHONY : src/ros_stereo.cc.i
+Examples/Stereo/stereo_euroc.cc.i:
+	$(MAKE) -f CMakeFiles/stereo_euroc.dir/build.make CMakeFiles/stereo_euroc.dir/Examples/Stereo/stereo_euroc.cc.i
+.PHONY : Examples/Stereo/stereo_euroc.cc.i
 
-src/ros_stereo.s: src/ros_stereo.cc.s
+Examples/Stereo/stereo_euroc.s: Examples/Stereo/stereo_euroc.cc.s
 
-.PHONY : src/ros_stereo.s
+.PHONY : Examples/Stereo/stereo_euroc.s
 
 # target to generate assembly for a file
-src/ros_stereo.cc.s:
-	$(MAKE) -f CMakeFiles/Stereo.dir/build.make CMakeFiles/Stereo.dir/src/ros_stereo.cc.s
-.PHONY : src/ros_stereo.cc.s
+Examples/Stereo/stereo_euroc.cc.s:
+	$(MAKE) -f CMakeFiles/stereo_euroc.dir/build.make CMakeFiles/stereo_euroc.dir/Examples/Stereo/stereo_euroc.cc.s
+.PHONY : Examples/Stereo/stereo_euroc.cc.s
+
+Examples/Stereo/stereo_kitti.o: Examples/Stereo/stereo_kitti.cc.o
+
+.PHONY : Examples/Stereo/stereo_kitti.o
+
+# target to build an object file
+Examples/Stereo/stereo_kitti.cc.o:
+	$(MAKE) -f CMakeFiles/stereo_kitti.dir/build.make CMakeFiles/stereo_kitti.dir/Examples/Stereo/stereo_kitti.cc.o
+.PHONY : Examples/Stereo/stereo_kitti.cc.o
+
+Examples/Stereo/stereo_kitti.i: Examples/Stereo/stereo_kitti.cc.i
+
+.PHONY : Examples/Stereo/stereo_kitti.i
+
+# target to preprocess a source file
+Examples/Stereo/stereo_kitti.cc.i:
+	$(MAKE) -f CMakeFiles/stereo_kitti.dir/build.make CMakeFiles/stereo_kitti.dir/Examples/Stereo/stereo_kitti.cc.i
+.PHONY : Examples/Stereo/stereo_kitti.cc.i
+
+Examples/Stereo/stereo_kitti.s: Examples/Stereo/stereo_kitti.cc.s
+
+.PHONY : Examples/Stereo/stereo_kitti.s
+
+# target to generate assembly for a file
+Examples/Stereo/stereo_kitti.cc.s:
+	$(MAKE) -f CMakeFiles/stereo_kitti.dir/build.make CMakeFiles/stereo_kitti.dir/Examples/Stereo/stereo_kitti.cc.s
+.PHONY : Examples/Stereo/stereo_kitti.cc.s
+
+src/Converter.o: src/Converter.cc.o
+
+.PHONY : src/Converter.o
+
+# target to build an object file
+src/Converter.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Converter.cc.o
+.PHONY : src/Converter.cc.o
+
+src/Converter.i: src/Converter.cc.i
+
+.PHONY : src/Converter.i
+
+# target to preprocess a source file
+src/Converter.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Converter.cc.i
+.PHONY : src/Converter.cc.i
+
+src/Converter.s: src/Converter.cc.s
+
+.PHONY : src/Converter.s
+
+# target to generate assembly for a file
+src/Converter.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Converter.cc.s
+.PHONY : src/Converter.cc.s
+
+src/Frame.o: src/Frame.cc.o
+
+.PHONY : src/Frame.o
+
+# target to build an object file
+src/Frame.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Frame.cc.o
+.PHONY : src/Frame.cc.o
+
+src/Frame.i: src/Frame.cc.i
+
+.PHONY : src/Frame.i
+
+# target to preprocess a source file
+src/Frame.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Frame.cc.i
+.PHONY : src/Frame.cc.i
+
+src/Frame.s: src/Frame.cc.s
+
+.PHONY : src/Frame.s
+
+# target to generate assembly for a file
+src/Frame.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Frame.cc.s
+.PHONY : src/Frame.cc.s
+
+src/FrameDrawer.o: src/FrameDrawer.cc.o
+
+.PHONY : src/FrameDrawer.o
+
+# target to build an object file
+src/FrameDrawer.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/FrameDrawer.cc.o
+.PHONY : src/FrameDrawer.cc.o
+
+src/FrameDrawer.i: src/FrameDrawer.cc.i
+
+.PHONY : src/FrameDrawer.i
+
+# target to preprocess a source file
+src/FrameDrawer.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/FrameDrawer.cc.i
+.PHONY : src/FrameDrawer.cc.i
+
+src/FrameDrawer.s: src/FrameDrawer.cc.s
+
+.PHONY : src/FrameDrawer.s
+
+# target to generate assembly for a file
+src/FrameDrawer.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/FrameDrawer.cc.s
+.PHONY : src/FrameDrawer.cc.s
+
+src/Initializer.o: src/Initializer.cc.o
+
+.PHONY : src/Initializer.o
+
+# target to build an object file
+src/Initializer.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Initializer.cc.o
+.PHONY : src/Initializer.cc.o
+
+src/Initializer.i: src/Initializer.cc.i
+
+.PHONY : src/Initializer.i
+
+# target to preprocess a source file
+src/Initializer.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Initializer.cc.i
+.PHONY : src/Initializer.cc.i
+
+src/Initializer.s: src/Initializer.cc.s
+
+.PHONY : src/Initializer.s
+
+# target to generate assembly for a file
+src/Initializer.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Initializer.cc.s
+.PHONY : src/Initializer.cc.s
+
+src/KeyFrame.o: src/KeyFrame.cc.o
+
+.PHONY : src/KeyFrame.o
+
+# target to build an object file
+src/KeyFrame.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/KeyFrame.cc.o
+.PHONY : src/KeyFrame.cc.o
+
+src/KeyFrame.i: src/KeyFrame.cc.i
+
+.PHONY : src/KeyFrame.i
+
+# target to preprocess a source file
+src/KeyFrame.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/KeyFrame.cc.i
+.PHONY : src/KeyFrame.cc.i
+
+src/KeyFrame.s: src/KeyFrame.cc.s
+
+.PHONY : src/KeyFrame.s
+
+# target to generate assembly for a file
+src/KeyFrame.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/KeyFrame.cc.s
+.PHONY : src/KeyFrame.cc.s
+
+src/KeyFrameDatabase.o: src/KeyFrameDatabase.cc.o
+
+.PHONY : src/KeyFrameDatabase.o
+
+# target to build an object file
+src/KeyFrameDatabase.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/KeyFrameDatabase.cc.o
+.PHONY : src/KeyFrameDatabase.cc.o
+
+src/KeyFrameDatabase.i: src/KeyFrameDatabase.cc.i
+
+.PHONY : src/KeyFrameDatabase.i
+
+# target to preprocess a source file
+src/KeyFrameDatabase.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/KeyFrameDatabase.cc.i
+.PHONY : src/KeyFrameDatabase.cc.i
+
+src/KeyFrameDatabase.s: src/KeyFrameDatabase.cc.s
+
+.PHONY : src/KeyFrameDatabase.s
+
+# target to generate assembly for a file
+src/KeyFrameDatabase.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/KeyFrameDatabase.cc.s
+.PHONY : src/KeyFrameDatabase.cc.s
+
+src/LocalMapping.o: src/LocalMapping.cc.o
+
+.PHONY : src/LocalMapping.o
+
+# target to build an object file
+src/LocalMapping.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/LocalMapping.cc.o
+.PHONY : src/LocalMapping.cc.o
+
+src/LocalMapping.i: src/LocalMapping.cc.i
+
+.PHONY : src/LocalMapping.i
+
+# target to preprocess a source file
+src/LocalMapping.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/LocalMapping.cc.i
+.PHONY : src/LocalMapping.cc.i
+
+src/LocalMapping.s: src/LocalMapping.cc.s
+
+.PHONY : src/LocalMapping.s
+
+# target to generate assembly for a file
+src/LocalMapping.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/LocalMapping.cc.s
+.PHONY : src/LocalMapping.cc.s
+
+src/LoopClosing.o: src/LoopClosing.cc.o
+
+.PHONY : src/LoopClosing.o
+
+# target to build an object file
+src/LoopClosing.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/LoopClosing.cc.o
+.PHONY : src/LoopClosing.cc.o
+
+src/LoopClosing.i: src/LoopClosing.cc.i
+
+.PHONY : src/LoopClosing.i
+
+# target to preprocess a source file
+src/LoopClosing.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/LoopClosing.cc.i
+.PHONY : src/LoopClosing.cc.i
+
+src/LoopClosing.s: src/LoopClosing.cc.s
+
+.PHONY : src/LoopClosing.s
+
+# target to generate assembly for a file
+src/LoopClosing.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/LoopClosing.cc.s
+.PHONY : src/LoopClosing.cc.s
+
+src/Map.o: src/Map.cc.o
+
+.PHONY : src/Map.o
+
+# target to build an object file
+src/Map.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Map.cc.o
+.PHONY : src/Map.cc.o
+
+src/Map.i: src/Map.cc.i
+
+.PHONY : src/Map.i
+
+# target to preprocess a source file
+src/Map.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Map.cc.i
+.PHONY : src/Map.cc.i
+
+src/Map.s: src/Map.cc.s
+
+.PHONY : src/Map.s
+
+# target to generate assembly for a file
+src/Map.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Map.cc.s
+.PHONY : src/Map.cc.s
+
+src/MapDrawer.o: src/MapDrawer.cc.o
+
+.PHONY : src/MapDrawer.o
+
+# target to build an object file
+src/MapDrawer.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/MapDrawer.cc.o
+.PHONY : src/MapDrawer.cc.o
+
+src/MapDrawer.i: src/MapDrawer.cc.i
+
+.PHONY : src/MapDrawer.i
+
+# target to preprocess a source file
+src/MapDrawer.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/MapDrawer.cc.i
+.PHONY : src/MapDrawer.cc.i
+
+src/MapDrawer.s: src/MapDrawer.cc.s
+
+.PHONY : src/MapDrawer.s
+
+# target to generate assembly for a file
+src/MapDrawer.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/MapDrawer.cc.s
+.PHONY : src/MapDrawer.cc.s
+
+src/MapPoint.o: src/MapPoint.cc.o
+
+.PHONY : src/MapPoint.o
+
+# target to build an object file
+src/MapPoint.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/MapPoint.cc.o
+.PHONY : src/MapPoint.cc.o
+
+src/MapPoint.i: src/MapPoint.cc.i
+
+.PHONY : src/MapPoint.i
+
+# target to preprocess a source file
+src/MapPoint.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/MapPoint.cc.i
+.PHONY : src/MapPoint.cc.i
+
+src/MapPoint.s: src/MapPoint.cc.s
+
+.PHONY : src/MapPoint.s
+
+# target to generate assembly for a file
+src/MapPoint.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/MapPoint.cc.s
+.PHONY : src/MapPoint.cc.s
+
+src/ORBextractor.o: src/ORBextractor.cc.o
+
+.PHONY : src/ORBextractor.o
+
+# target to build an object file
+src/ORBextractor.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/ORBextractor.cc.o
+.PHONY : src/ORBextractor.cc.o
+
+src/ORBextractor.i: src/ORBextractor.cc.i
+
+.PHONY : src/ORBextractor.i
+
+# target to preprocess a source file
+src/ORBextractor.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/ORBextractor.cc.i
+.PHONY : src/ORBextractor.cc.i
+
+src/ORBextractor.s: src/ORBextractor.cc.s
+
+.PHONY : src/ORBextractor.s
+
+# target to generate assembly for a file
+src/ORBextractor.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/ORBextractor.cc.s
+.PHONY : src/ORBextractor.cc.s
+
+src/ORBmatcher.o: src/ORBmatcher.cc.o
+
+.PHONY : src/ORBmatcher.o
+
+# target to build an object file
+src/ORBmatcher.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/ORBmatcher.cc.o
+.PHONY : src/ORBmatcher.cc.o
+
+src/ORBmatcher.i: src/ORBmatcher.cc.i
+
+.PHONY : src/ORBmatcher.i
+
+# target to preprocess a source file
+src/ORBmatcher.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/ORBmatcher.cc.i
+.PHONY : src/ORBmatcher.cc.i
+
+src/ORBmatcher.s: src/ORBmatcher.cc.s
+
+.PHONY : src/ORBmatcher.s
+
+# target to generate assembly for a file
+src/ORBmatcher.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/ORBmatcher.cc.s
+.PHONY : src/ORBmatcher.cc.s
+
+src/Optimizer.o: src/Optimizer.cc.o
+
+.PHONY : src/Optimizer.o
+
+# target to build an object file
+src/Optimizer.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Optimizer.cc.o
+.PHONY : src/Optimizer.cc.o
+
+src/Optimizer.i: src/Optimizer.cc.i
+
+.PHONY : src/Optimizer.i
+
+# target to preprocess a source file
+src/Optimizer.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Optimizer.cc.i
+.PHONY : src/Optimizer.cc.i
+
+src/Optimizer.s: src/Optimizer.cc.s
+
+.PHONY : src/Optimizer.s
+
+# target to generate assembly for a file
+src/Optimizer.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Optimizer.cc.s
+.PHONY : src/Optimizer.cc.s
+
+src/PnPsolver.o: src/PnPsolver.cc.o
+
+.PHONY : src/PnPsolver.o
+
+# target to build an object file
+src/PnPsolver.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/PnPsolver.cc.o
+.PHONY : src/PnPsolver.cc.o
+
+src/PnPsolver.i: src/PnPsolver.cc.i
+
+.PHONY : src/PnPsolver.i
+
+# target to preprocess a source file
+src/PnPsolver.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/PnPsolver.cc.i
+.PHONY : src/PnPsolver.cc.i
+
+src/PnPsolver.s: src/PnPsolver.cc.s
+
+.PHONY : src/PnPsolver.s
+
+# target to generate assembly for a file
+src/PnPsolver.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/PnPsolver.cc.s
+.PHONY : src/PnPsolver.cc.s
+
+src/Sim3Solver.o: src/Sim3Solver.cc.o
+
+.PHONY : src/Sim3Solver.o
+
+# target to build an object file
+src/Sim3Solver.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Sim3Solver.cc.o
+.PHONY : src/Sim3Solver.cc.o
+
+src/Sim3Solver.i: src/Sim3Solver.cc.i
+
+.PHONY : src/Sim3Solver.i
+
+# target to preprocess a source file
+src/Sim3Solver.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Sim3Solver.cc.i
+.PHONY : src/Sim3Solver.cc.i
+
+src/Sim3Solver.s: src/Sim3Solver.cc.s
+
+.PHONY : src/Sim3Solver.s
+
+# target to generate assembly for a file
+src/Sim3Solver.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Sim3Solver.cc.s
+.PHONY : src/Sim3Solver.cc.s
+
+src/System.o: src/System.cc.o
+
+.PHONY : src/System.o
+
+# target to build an object file
+src/System.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/System.cc.o
+.PHONY : src/System.cc.o
+
+src/System.i: src/System.cc.i
+
+.PHONY : src/System.i
+
+# target to preprocess a source file
+src/System.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/System.cc.i
+.PHONY : src/System.cc.i
+
+src/System.s: src/System.cc.s
+
+.PHONY : src/System.s
+
+# target to generate assembly for a file
+src/System.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/System.cc.s
+.PHONY : src/System.cc.s
+
+src/Tracking.o: src/Tracking.cc.o
+
+.PHONY : src/Tracking.o
+
+# target to build an object file
+src/Tracking.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.o
+.PHONY : src/Tracking.cc.o
+
+src/Tracking.i: src/Tracking.cc.i
+
+.PHONY : src/Tracking.i
+
+# target to preprocess a source file
+src/Tracking.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.i
+.PHONY : src/Tracking.cc.i
+
+src/Tracking.s: src/Tracking.cc.s
+
+.PHONY : src/Tracking.s
+
+# target to generate assembly for a file
+src/Tracking.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.s
+.PHONY : src/Tracking.cc.s
+
+src/Viewer.o: src/Viewer.cc.o
+
+.PHONY : src/Viewer.o
+
+# target to build an object file
+src/Viewer.cc.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.o
+.PHONY : src/Viewer.cc.o
+
+src/Viewer.i: src/Viewer.cc.i
+
+.PHONY : src/Viewer.i
+
+# target to preprocess a source file
+src/Viewer.cc.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.i
+.PHONY : src/Viewer.cc.i
+
+src/Viewer.s: src/Viewer.cc.s
+
+.PHONY : src/Viewer.s
+
+# target to generate assembly for a file
+src/Viewer.cc.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.s
+.PHONY : src/Viewer.cc.s
 
 # Help Target
 help:
@@ -661,55 +882,90 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
-	@echo "... edit_cache"
-	@echo "... RGBD"
-	@echo "... Stereo"
-	@echo "... ROSBUILD_genmsg_lisp"
-	@echo "... ROSBUILD_genmsg_cpp"
-	@echo "... test-results-run"
-	@echo "... rosbuild_premsgsrvgen"
-	@echo "... ROSBUILD_gensrv_cpp"
-	@echo "... tests"
-	@echo "... test-results"
 	@echo "... rebuild_cache"
-	@echo "... rospack_gensrv"
-	@echo "... test-future"
-	@echo "... list_install_components"
-	@echo "... Mono"
-	@echo "... rospack_genmsg_libexe"
-	@echo "... MonoAR"
-	@echo "... rosbuild_clean-test-results"
-	@echo "... ROSBUILD_gensrv_lisp"
-	@echo "... test"
-	@echo "... rospack_genmsg"
-	@echo "... install"
-	@echo "... rosbuild_precompile"
-	@echo "... install/local"
-	@echo "... doxygen"
-	@echo "... run_tests"
-	@echo "... download_extra_data"
-	@echo "... _catkin_empty_exported_target"
-	@echo "... clean_test_results"
-	@echo "... gmock_main"
-	@echo "... gmock"
-	@echo "... gtest_main"
-	@echo "... gtest"
-	@echo "... src/AR/ViewerAR.o"
-	@echo "... src/AR/ViewerAR.i"
-	@echo "... src/AR/ViewerAR.s"
-	@echo "... src/AR/ros_mono_ar.o"
-	@echo "... src/AR/ros_mono_ar.i"
-	@echo "... src/AR/ros_mono_ar.s"
-	@echo "... src/ros_mono.o"
-	@echo "... src/ros_mono.i"
-	@echo "... src/ros_mono.s"
-	@echo "... src/ros_rgbd.o"
-	@echo "... src/ros_rgbd.i"
-	@echo "... src/ros_rgbd.s"
-	@echo "... src/ros_stereo.o"
-	@echo "... src/ros_stereo.i"
-	@echo "... src/ros_stereo.s"
+	@echo "... edit_cache"
+	@echo "... mono_euroc"
+	@echo "... rgbd_tum"
+	@echo "... mono_kitti"
+	@echo "... stereo_kitti"
+	@echo "... stereo_euroc"
+	@echo "... ORB_SLAM2"
+	@echo "... mono_tum"
+	@echo "... Examples/Monocular/mono_euroc.o"
+	@echo "... Examples/Monocular/mono_euroc.i"
+	@echo "... Examples/Monocular/mono_euroc.s"
+	@echo "... Examples/Monocular/mono_kitti.o"
+	@echo "... Examples/Monocular/mono_kitti.i"
+	@echo "... Examples/Monocular/mono_kitti.s"
+	@echo "... Examples/Monocular/mono_tum.o"
+	@echo "... Examples/Monocular/mono_tum.i"
+	@echo "... Examples/Monocular/mono_tum.s"
+	@echo "... Examples/RGB-D/rgbd_tum.o"
+	@echo "... Examples/RGB-D/rgbd_tum.i"
+	@echo "... Examples/RGB-D/rgbd_tum.s"
+	@echo "... Examples/Stereo/stereo_euroc.o"
+	@echo "... Examples/Stereo/stereo_euroc.i"
+	@echo "... Examples/Stereo/stereo_euroc.s"
+	@echo "... Examples/Stereo/stereo_kitti.o"
+	@echo "... Examples/Stereo/stereo_kitti.i"
+	@echo "... Examples/Stereo/stereo_kitti.s"
+	@echo "... src/Converter.o"
+	@echo "... src/Converter.i"
+	@echo "... src/Converter.s"
+	@echo "... src/Frame.o"
+	@echo "... src/Frame.i"
+	@echo "... src/Frame.s"
+	@echo "... src/FrameDrawer.o"
+	@echo "... src/FrameDrawer.i"
+	@echo "... src/FrameDrawer.s"
+	@echo "... src/Initializer.o"
+	@echo "... src/Initializer.i"
+	@echo "... src/Initializer.s"
+	@echo "... src/KeyFrame.o"
+	@echo "... src/KeyFrame.i"
+	@echo "... src/KeyFrame.s"
+	@echo "... src/KeyFrameDatabase.o"
+	@echo "... src/KeyFrameDatabase.i"
+	@echo "... src/KeyFrameDatabase.s"
+	@echo "... src/LocalMapping.o"
+	@echo "... src/LocalMapping.i"
+	@echo "... src/LocalMapping.s"
+	@echo "... src/LoopClosing.o"
+	@echo "... src/LoopClosing.i"
+	@echo "... src/LoopClosing.s"
+	@echo "... src/Map.o"
+	@echo "... src/Map.i"
+	@echo "... src/Map.s"
+	@echo "... src/MapDrawer.o"
+	@echo "... src/MapDrawer.i"
+	@echo "... src/MapDrawer.s"
+	@echo "... src/MapPoint.o"
+	@echo "... src/MapPoint.i"
+	@echo "... src/MapPoint.s"
+	@echo "... src/ORBextractor.o"
+	@echo "... src/ORBextractor.i"
+	@echo "... src/ORBextractor.s"
+	@echo "... src/ORBmatcher.o"
+	@echo "... src/ORBmatcher.i"
+	@echo "... src/ORBmatcher.s"
+	@echo "... src/Optimizer.o"
+	@echo "... src/Optimizer.i"
+	@echo "... src/Optimizer.s"
+	@echo "... src/PnPsolver.o"
+	@echo "... src/PnPsolver.i"
+	@echo "... src/PnPsolver.s"
+	@echo "... src/Sim3Solver.o"
+	@echo "... src/Sim3Solver.i"
+	@echo "... src/Sim3Solver.s"
+	@echo "... src/System.o"
+	@echo "... src/System.i"
+	@echo "... src/System.s"
+	@echo "... src/Tracking.o"
+	@echo "... src/Tracking.i"
+	@echo "... src/Tracking.s"
+	@echo "... src/Viewer.o"
+	@echo "... src/Viewer.i"
+	@echo "... src/Viewer.s"
 .PHONY : help
 
 

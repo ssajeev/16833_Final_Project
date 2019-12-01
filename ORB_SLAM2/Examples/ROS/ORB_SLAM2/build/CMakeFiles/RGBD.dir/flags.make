@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall  -O3 -march=native -std=c++11 -O3 -DNDEBUG   -W -Wall -Wno-un
 
 CXX_DEFINES = -DCOMPILEDWITHC11 -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"ORB_SLAM2\"
 
-CXX_INCLUDES = -I/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/include -I/opt/ros/melodic/include -isystem /usr/include/opencv -I/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2 -I/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/../../.. -I/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/../../../include -isystem /home/advaith/Pangolin/include -isystem /home/advaith/Pangolin/build/src/include -isystem /usr/include/eigen3 
+CXX_INCLUDES = -I/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/include -I/opt/ros/melodic/include -isystem /usr/include/opencv -I/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2 -I/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/../../.. -I/home/advaith/Documents/16833_Final_Project/ORB_SLAM2/Examples/ROS/ORB_SLAM2/../../../include -isystem /home/advaith/Pangolin/include -isystem /home/advaith/Pangolin/build/src/include -isystem /usr/include/eigen3 
 
