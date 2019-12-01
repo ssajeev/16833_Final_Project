@@ -8,11 +8,15 @@ import numpy as np
 from sklearn.preprocessing import normalize
 import rospy
 import cv2
+import tf2_ros
+import tf2_py as tf2
+from tf2_sensor_msgs.tf2_sensor_msgs import do_transform_cloud
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs import point_cloud2
 from sensor_msgs.msg import PointCloud2, PointField
 from std_msgs.msg import Header
+from geometry_msgs.msg import PoseStamped
 import sensor_msgs.point_cloud2 as pcl2
 import open3d as o3d
 
@@ -29,9 +33,15 @@ class point_cloud_generator:
         self.rgb_feed = rospy.Subscriber("left_stereo", Image, self.get_rgb_img)
         self.point_cloud_pub = rospy.Publisher("point_cloud_smooth", PointCloud2, queue_size=2)
         self.disp_map_smooth = None
+        self.tf_buffer = tf2_ros.Buffer()
+        self.tf_listener = tf2_ros.TransformListener(self.tf_buffer)
+        self.pose = PoseStamped()
         self.rgb_img = None
         self.first_flag = False
         self.first_flag_rgb = False
+        self.prev_cloud = PointCloud2()
+        rospy.sleep(10)
+
 
     def get_disp_map(self, data):
         self.disp_map_smooth = self.bridge.imgmsg_to_cv2(data)
@@ -76,7 +86,7 @@ class point_cloud_generator:
                 ###Pointcloud Msg Header
                 header = Header()
                 header.stamp = rospy.Time.now()
-                header.frame_id = "map"
+                header.frame_id = "base_link"
 
                 p_data = np.concatenate((inds.T, depths.T), axis=1)
 
@@ -86,18 +96,28 @@ class point_cloud_generator:
                     PointField('x', 0, PointField.FLOAT32, 1),
                     PointField('y', 4, PointField.FLOAT32, 1),
                     PointField('z', 8, PointField.FLOAT32, 1),
-                    PointField('r', 12, PointField.FLOAT32, 1),
-                    PointField('g', 16, PointField.FLOAT32, 1),
-                    PointField('b', 20, PointField.FLOAT32, 1)
+                    PointField('g', 12, PointField.FLOAT32, 1),
+                    PointField('b', 16, PointField.FLOAT32, 1),
+                    PointField('r', 20, PointField.FLOAT32, 1)
                 ]
                 pc2 = point_cloud2.create_cloud(header, fields, xyzrgb_data)
+
                 # f.write("p_data:")
                 # f.write(str(p_data))
                 # header = Header()
                 # header.stamp = rospy.Time.now()
                 # header.frame_id = 'map'
                 # pcla = pcl2.create_cloud_xyz32(header, p_data)
-                self.point_cloud_pub.publish(pc2)
+                try:
+                    trans = self.tf_buffer.lookup_transform("base_link", "map", rospy.Time(0))
+                except tf2.LookupException as ex:
+                    rospy.logwarn(ex)
+                    return
+                except tf2.ExtrapolationException as ex:
+                    rospy.logwarn(ex)
+                    return
+                cloud_out = do_transform_cloud(pc2, trans)
+                self.point_cloud_pub.publish(cloud_out)
 
 
 

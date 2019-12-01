@@ -1,0 +1,2 @@
+Sophus:organ_slam:rpg_svo/rqt_svo:rpg_svo/svo:rpg_svo/svo_analysis:rpg_svo/svo_msgs:rpg_svo/svo_ros:rpg_vikit/vikit_common:rpg_vikit/vikit_py:rpg_vikit/vikit_ros:viso2/libviso2:viso2/viso2:viso2/viso2_ros
+-G Unix Makefiles -DCATKIN_DEVEL_PREFIX=/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated -DCMAKE_INSTALL_PREFIX=/home/advaith/Documents/16833_Final_Project/ROS/install_isolated

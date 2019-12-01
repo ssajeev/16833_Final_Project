@@ -1,0 +1,8 @@
+prefix=/home/advaith/Documents/16833_Final_Project/ROS/install_isolated
+
+Name: libviso2
+Description: Description of libviso2
+Version: 0.0.1
+Cflags: -I/home/advaith/Documents/16833_Final_Project/ROS/install_isolated/include
+Libs: -L/home/advaith/Documents/16833_Final_Project/ROS/install_isolated/lib -lviso2
+Requires: 

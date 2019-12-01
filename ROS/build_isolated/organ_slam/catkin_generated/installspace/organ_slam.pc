@@ -1,0 +1,8 @@
+prefix=/home/advaith/Documents/16833_Final_Project/ROS/install_isolated
+
+Name: organ_slam
+Description: Description of organ_slam
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/advaith/Documents/16833_Final_Project/ROS/install_isolated/lib 
+Requires: 

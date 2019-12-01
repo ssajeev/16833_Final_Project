@@ -2,6 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ROS/src/rpg_svo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ROS/src/rpg_vikit" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/ROS/src/viso2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Sophus" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fast" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rpg_svo" vcs="Git" />
   </component>
 </project>

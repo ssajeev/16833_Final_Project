@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+# generated from catkin/python/catkin/environment_cache.py
+
+# based on a snapshot of the environment before and after calling the setup script
+# it emulates the modifications of the setup script without recurring computations
+
+# new environment variables
+
+# modified environment variables
+export CMAKE_PREFIX_PATH="/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/svo_analysis:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/rqt_svo:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/organ_slam:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/libviso2:/home/advaith/Documents/16833_Final_Project/ROS/devel:/home/advaith/Documents/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/devel:/opt/ros/melodic:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/sophus"
+export LD_LIBRARY_PATH="/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/svo_analysis/lib:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/rqt_svo/lib:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/organ_slam/lib:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/libviso2/lib:/home/advaith/Documents/16833_Final_Project/ROS/devel/lib:/opt/ros/melodic/lib:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/sophus/lib:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/sophus/lib/x86_64-linux-gnu"
+export PATH="/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/rqt_svo/bin:/home/advaith/Documents/16833_Final_Project/ROS/devel/bin:/opt/ros/melodic/bin:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/sophus/bin:/home/advaith/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PKG_CONFIG_PATH="/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/rqt_svo/lib/pkgconfig:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/organ_slam/lib/pkgconfig:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/libviso2/lib/pkgconfig:/home/advaith/Documents/16833_Final_Project/ROS/devel/lib/pkgconfig:/opt/ros/melodic/lib/pkgconfig:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/sophus/lib/pkgconfig:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/sophus/lib/x86_64-linux-gnu/pkgconfig"
+export PYTHONPATH="/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/svo_analysis/lib/python2.7/dist-packages:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/rqt_svo/lib/python2.7/dist-packages:/home/advaith/Documents/16833_Final_Project/ROS/devel/lib/python2.7/dist-packages:/opt/ros/melodic/lib/python2.7/dist-packages:/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/sophus/lib/python2.7/dist-packages"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/advaith/Documents/16833_Final_Project/ROS/devel_isolated/svo_analysis/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/advaith/Documents/16833_Final_Project/ROS/src/rpg_svo/svo_analysis:$ROS_PACKAGE_PATH"

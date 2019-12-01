@@ -1,0 +1,8 @@
+prefix=/home/advaith/Documents/16833_Final_Project/ROS/install
+
+Name: vikit_py
+Description: Description of vikit_py
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/advaith/Documents/16833_Final_Project/ROS/install/lib 
+Requires: 
