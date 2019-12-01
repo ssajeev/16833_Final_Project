@@ -58,6 +58,8 @@ class point_cloud_generator:
         self.transl.transform.rotation.z = quat[2]
         self.transl.transform.rotation.w = quat[3]
         self.transl.transform.translation = Vector3(-.5, -0.5, 0.0)
+        self.global_pct = None
+        self.init_global = True
 
 
     def get_disp_map(self, data):
@@ -107,6 +109,8 @@ class point_cloud_generator:
 
                 xyzrgb_data = np.concatenate((p_data, rgb_frame), axis=1)
 
+
+
                 fields = [
                     PointField('x', 0, PointField.FLOAT32, 1),
                     PointField('y', 4, PointField.FLOAT32, 1),
@@ -128,14 +132,26 @@ class point_cloud_generator:
                 try:
                     trans = self.tf_buffer.lookup_transform("base_link", "map", rospy.Time(0))
                     pc2 = do_transform_cloud(pc2, trans)
-                    self.point_cloud_pub.publish(pc2)
-                    continue
                 except tf2.LookupException as ex:
                     rospy.logwarn(ex)
                 except tf2.ExtrapolationException as ex:
                     rospy.logwarn(ex)
 
-                self.point_cloud_pub.publish(pc2)
+                pts = pcl2.read_points(pc2, field_names=("x", "y", "z", "b", "g", "r"), skip_nans=True)
+
+                pts = np.asarray(list(pts))
+                print(np.shape(pts))
+                if(self.init_global):
+                    self.global_pct = pts
+                    self.init_global = False
+                else:
+                    self.global_pct = np.concatenate([self.global_pct, pts], axis = 0)
+                    print(np.shape(self.global_pct))
+                header2 = Header()
+                header2.stamp = rospy.Time.now()
+                header2.frame_id = "base_link"
+                global_ros_pointcloud = point_cloud2.create_cloud(header2, fields, self.global_pct)
+                self.point_cloud_pub.publish(global_ros_pointcloud)
 
 
 

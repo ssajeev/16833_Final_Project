@@ -16,7 +16,7 @@ from PIL import Image
 
 
 
-l = 10000
+li = 10000
 sigma = 1.1
 visual_mult = 1.0
 
@@ -53,7 +53,6 @@ class disparity_generator:
                 left_img = cv2.cvtColor(self.left_img, cv2.COLOR_BGR2GRAY)
                 right_img = cv2.cvtColor(self.right_img, cv2.COLOR_BGR2GRAY)
                 rgb_img = left_img
-                cv2.waitKey(33)
                 l_stereo = cv2.StereoSGBM_create(minDisparity=0,
                                                  numDisparities=16,
                                                  blockSize=3,
@@ -64,7 +63,7 @@ class disparity_generator:
                                                  mode=cv2.STEREO_SGBM_MODE_SGBM_3WAY)
                 r_stereo = cv2.ximgproc.createRightMatcher(l_stereo)
                 wls_filter = cv2.ximgproc.createDisparityWLSFilter(matcher_left=l_stereo)
-                wls_filter.setLambda(l)
+                wls_filter.setLambda(li)
                 wls_filter.setSigmaColor(sigma)
                 d_l = l_stereo.compute(left_img, right_img)
                 d_r = r_stereo.compute(right_img, left_img)
@@ -83,14 +82,46 @@ class disparity_generator:
             if(not self.l_flag or not self.r_flag):
                 continue
             else:
+                l = self.left_img
+                r = self.right_img
+
+                left_img = cv2.cvtColor(l, cv2.COLOR_BGR2GRAY)
+                right_img = cv2.cvtColor(r, cv2.COLOR_BGR2GRAY)
+                rgb_img = left_img
+                l_stereo = cv2.StereoSGBM_create(minDisparity=0,
+                                                 numDisparities=16,
+                                                 blockSize=3,
+                                                 uniquenessRatio=15,
+                                                 speckleWindowSize=0,
+                                                 speckleRange=2,
+                                                 preFilterCap=20,
+                                                 mode=cv2.STEREO_SGBM_MODE_SGBM_3WAY)
+                r_stereo = cv2.ximgproc.createRightMatcher(l_stereo)
+                wls_filter = cv2.ximgproc.createDisparityWLSFilter(matcher_left=l_stereo)
+                wls_filter.setLambda(li)
+                wls_filter.setSigmaColor(sigma)
+                d_l = l_stereo.compute(left_img, right_img)
+                d_r = r_stereo.compute(right_img, left_img)
+                d_l = np.int16(d_l)
+                d_r = np.int16(d_r)
+                filtered = wls_filter.filter(d_l, left_img, None, d_r)
+                filtered = cv2.normalize(src=filtered, dst=filtered, beta=0, alpha=255, norm_type=cv2.NORM_MINMAX)
+                filtered = np.uint8(filtered)
+
+
                 # channels_first_l = np.transpose(self.left_img, (2, 0, 1))
                 # channels_first_r = np.transpose(self.right_img, (2, 0, 1))
-                image_l_gray = cv2.cvtColor(self.left_img, cv2.COLOR_BGR2GRAY)
+                image_l_gray = cv2.cvtColor(l, cv2.COLOR_BGR2GRAY)
                 image_l_norm = cv2.equalizeHist(image_l_gray)
                 image_l_norm_color = cv2.cvtColor(image_l_norm, cv2.COLOR_GRAY2BGR)
                 channels_first_l = Image.fromarray(np.uint8(image_l_norm_color))
-                channels_first_r = Image.fromarray(np.uint8(self.right_img))
+                channels_first_r = Image.fromarray(np.uint8(r))
                 depth_inference = inference(self.model, channels_first_l, channels_first_r)
+                #depth_inference = cv2.GaussianBlur(depth_inference, (5, 5), 0)
+                # depth_inference = cv2.bilateralFilter(depth_inference, 9, 75, 75)
+                # filtered = cv2.bilateralFilter(filtered, 9, 75, 75)
+                depth_inference = np.uint8((.60*filtered + .40*depth_inference))
+                depth_inference = cv2.bilateralFilter(depth_inference, 9, 75, 75)
                 self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(depth_inference, "8UC1"))
 
 
