@@ -42,8 +42,14 @@ class point_cloud_generator:
         self.first_flag_rgb = False
         self.prev_cloud = PointCloud2()
         self.righty = TransformStamped()
-        self.righty.transform.rotation = quaternion_from_euler(90, 0, 0)
-        self.righty.transform.translation = Vector3(0.0, 0.0, 0.0)
+        self.righty.header.frame_id = "base_link"
+        self.righty.child_frame_id = "base_link"
+        quat = quaternion_from_euler(0.0, 0.0, 1.57)
+        self.righty.transform.rotation.x = quat[0]
+        self.righty.transform.rotation.y = quat[1]
+        self.righty.transform.rotation.z = quat[2]
+        self.righty.transform.rotation.w = quat[3]
+        self.righty.transform.translation = Vector3(0, 0, 0)
 
 
     def get_disp_map(self, data):
@@ -58,16 +64,11 @@ class point_cloud_generator:
         f = open("data_log.txt", "w+")
         while not rospy.is_shutdown():
             if self.first_flag and self.first_flag_rgb:
-                # cv2.imshow("d", self.disp_map_smooth)
-                # cv2.waitKey(33)
                 img_size = np.shape(self.disp_map_smooth)
 
                 rgb_frame = np.reshape(self.rgb_img,
                                        (np.shape(self.rgb_img)[0]*np.shape(self.rgb_img)[1],
                                        3))
-
-
-
                 inds = np.indices(img_size)
                 # f.write("map:")
                 # f.write(str(self.disp_map_smooth))
@@ -111,6 +112,7 @@ class point_cloud_generator:
                 # header.stamp = rospy.Time.now()
                 # header.frame_id = 'map'
                 # pcla = pcl2.create_cloud_xyz32(header, p_data)
+                pc2 = do_transform_cloud(pc2, self.righty)
                 try:
                     trans = self.tf_buffer.lookup_transform("base_link", "map", rospy.Time(0))
                     pc2 = do_transform_cloud(pc2, trans)
@@ -119,7 +121,6 @@ class point_cloud_generator:
                     rospy.logwarn(ex)
                 except tf2.ExtrapolationException as ex:
                     rospy.logwarn(ex)
-                pc2 = do_transform_cloud(pc2, self.righty)
                 self.point_cloud_pub.publish(pc2)
 
 

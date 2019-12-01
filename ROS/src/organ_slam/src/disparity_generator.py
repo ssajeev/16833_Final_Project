@@ -97,9 +97,9 @@ class disparity_generator:
 
 def main():
     rospy.init_node('disparity_generator', anonymous=False)
-    d_pub = disparity_generator(24, '/home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/src/saved_model_10-31-2019-21_41_41.pt')
+    d_pub = disparity_generator(24, '/home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/src/hist_model_epoch_37.pt')
     rospy.loginfo("Disparity Generator Initialized")
-    d_pub.generate_smart_disp_map()
+    d_pub.generate_geometric_disp_map()
 
 main()
 
