@@ -1,5 +1,10 @@
 #!/usr/bin/env python
-
+# image_publisher.py
+#
+# This node grabs images and streams them to certain topics. For modularization
+#
+#
+# Author: Advaith Sethuraman 2019
 import rospy
 import sys
 import cv2
@@ -13,7 +18,6 @@ from cv_bridge import CvBridge, CvBridgeError
 
 
 class temporal_filter:
-
     def __init__(self, model_path = ""):
         print("temporal")
         rospy.sleep(2.)

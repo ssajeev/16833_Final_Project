@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+# point_cloud_generator.py
+#
+# Node creates dense pointclouds from disparity map images
+#
+#
+# Author: Sandra Sajeev, Advaith Sethuraman 2019
 
 import rospy
 import sys
@@ -70,6 +76,7 @@ class point_cloud_generator:
         self.rgb_img = self.bridge.imgmsg_to_cv2(data)
         self.first_flag_rgb = True
 
+    #generate point cloud from depth map topic
     def generate_point_cloud(self):
         f = open("data_log.txt", "w+")
         while not rospy.is_shutdown():
@@ -80,37 +87,18 @@ class point_cloud_generator:
                                        (np.shape(self.rgb_img)[0]*np.shape(self.rgb_img)[1],
                                        3))
                 inds = np.indices(img_size)
-                # f.write("map:")
-                # f.write(str(self.disp_map_smooth))
                 self.disp_map_smooth = np.reshape(self.disp_map_smooth, img_size).astype(float)
-                # f.write("map_s:")
-                # f.write(str(self.disp_map_smooth))
                 inds = np.reshape(inds, (2, img_size[0]*img_size[1])).astype(float)
-
-                #x = y, y = -x
                 tmp = np.copy(inds[0])
                 inds[0] = inds[1]/float(img_size[1])*float(img_size[1])/float(img_size[0]) - float(img_size[1])/float(img_size[0])/2.0
                       #reshape the indices
                 inds[1] = -(tmp/float(img_size[0]) - 1.0/2.0)
-
-                #print inds
                 depths = -1.0*np.reshape(255 - self.disp_map_smooth, (1, img_size[0]*img_size[1])) / 255.0
-                # f.write("resae:")
-                # f.write(str(depths))
-                #print np.shape(depths)
-                #print np.shape(inds)
-
-                ###Pointcloud Msg Header
                 header = Header()
                 header.stamp = rospy.Time.now()
                 header.frame_id = "base_link"
-
                 p_data = np.concatenate((inds.T, depths.T), axis=1)
-
                 xyzrgb_data = np.concatenate((p_data, rgb_frame), axis=1)
-
-
-
                 fields = [
                     PointField('x', 0, PointField.FLOAT32, 1),
                     PointField('y', 4, PointField.FLOAT32, 1),
@@ -120,15 +108,6 @@ class point_cloud_generator:
                     PointField('r', 20, PointField.FLOAT32, 1)
                 ]
                 pc2 = point_cloud2.create_cloud(header, fields, xyzrgb_data)
-
-                # f.write("p_data:")
-                # f.write(str(p_data))
-                # header = Header()
-                # header.stamp = rospy.Time.now()
-                # header.frame_id = 'map'
-                # pcla = pcl2.create_cloud_xyz32(header, p_data)
-                #pc2 = do_transform_cloud(pc2, self.transl)
-
                 try:
                     trans = self.tf_buffer.lookup_transform("base_link", "map", rospy.Time(0))
                     pc2 = do_transform_cloud(pc2, trans)
@@ -136,16 +115,15 @@ class point_cloud_generator:
                     rospy.logwarn(ex)
                 except tf2.ExtrapolationException as ex:
                     rospy.logwarn(ex)
-
                 pts = pcl2.read_points(pc2, field_names=("x", "y", "z", "b", "g", "r"), skip_nans=True)
-
                 pts = np.asarray(list(pts))
                 print(np.shape(pts))
                 if(self.init_global):
                     self.global_pct = pts
                     self.init_global = False
                 else:
-                    self.global_pct = np.concatenate([self.global_pct, pts], axis = 0)
+                    self.global_pct = pts
+                    #np.concatenate([self.global_pct, pts], axis = 0)
                     print(np.shape(self.global_pct))
                 header2 = Header()
                 header2.stamp = rospy.Time.now()
@@ -153,11 +131,7 @@ class point_cloud_generator:
                 global_ros_pointcloud = point_cloud2.create_cloud(header2, fields, self.global_pct)
                 self.point_cloud_pub.publish(global_ros_pointcloud)
 
-
-
-
 def main():
-
     rospy.init_node('point_cloud_generator', anonymous=False)
     d_pub = point_cloud_generator()
     rospy.loginfo("Point Cloud Generator Initialized")

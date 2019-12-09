@@ -1,4 +1,9 @@
-
+# inference.py
+#
+# Contains code for CNN evaluation of images
+#
+#
+# Author: Sandra Sajeev 2019
 import argparse
 import torch
 import cv2
@@ -22,7 +27,6 @@ def load_model(model_path):
   return model 
 
 def inference(model, img_l, img_r):
-
   transform = transforms.Compose([transforms.ToTensor()])
   #output = model.forward(torch.from_numpy(img_l).float().unsqueeze(0), torch.from_numpy(img_l).float().unsqueeze(0))
   output = model.forward(transform(img_l).float().unsqueeze(0),transform(img_l).float().unsqueeze(0))

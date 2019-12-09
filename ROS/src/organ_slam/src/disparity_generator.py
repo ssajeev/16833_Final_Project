@@ -14,14 +14,11 @@ import open3d as o3d
 from inference import *
 from PIL import Image
 
-
-
 li = 10000
 sigma = 1.1
 visual_mult = 1.0
 
 class disparity_generator:
-
     def __init__(self, frame_rate, model_path):
         #self.model = load_thingy
         self.bridge = CvBridge()
@@ -72,8 +69,6 @@ class disparity_generator:
                 filtered = wls_filter.filter(d_l, left_img, None, d_r)
                 filtered = cv2.normalize(src=filtered, dst=filtered, beta=0, alpha=255, norm_type=cv2.NORM_MINMAX)
                 filtered = np.uint8(filtered)
-                #filtered = cv2.applyColorMap(filtered, cv2.COLORMAP_JET)
-                #disparity = cv2.convertScaleAbs(stereo.compute(left_img, right_img))
                 self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(filtered, "8UC1"))
                 rospy.sleep(.1)
 
@@ -84,7 +79,6 @@ class disparity_generator:
             else:
                 l = self.left_img
                 r = self.right_img
-
                 left_img = cv2.cvtColor(l, cv2.COLOR_BGR2GRAY)
                 right_img = cv2.cvtColor(r, cv2.COLOR_BGR2GRAY)
                 rgb_img = left_img
@@ -107,19 +101,12 @@ class disparity_generator:
                 filtered = wls_filter.filter(d_l, left_img, None, d_r)
                 filtered = cv2.normalize(src=filtered, dst=filtered, beta=0, alpha=255, norm_type=cv2.NORM_MINMAX)
                 filtered = np.uint8(filtered)
-
-
-                # channels_first_l = np.transpose(self.left_img, (2, 0, 1))
-                # channels_first_r = np.transpose(self.right_img, (2, 0, 1))
                 image_l_gray = cv2.cvtColor(l, cv2.COLOR_BGR2GRAY)
                 image_l_norm = cv2.equalizeHist(image_l_gray)
                 image_l_norm_color = cv2.cvtColor(image_l_norm, cv2.COLOR_GRAY2BGR)
                 channels_first_l = Image.fromarray(np.uint8(image_l_norm_color))
                 channels_first_r = Image.fromarray(np.uint8(r))
                 depth_inference = inference(self.model, channels_first_l, channels_first_r)
-                #depth_inference = cv2.GaussianBlur(depth_inference, (5, 5), 0)
-                # depth_inference = cv2.bilateralFilter(depth_inference, 9, 75, 75)
-                # filtered = cv2.bilateralFilter(filtered, 9, 75, 75)
                 depth_inference = np.uint8((.60*filtered + .40*depth_inference))
                 depth_inference = cv2.bilateralFilter(depth_inference, 9, 75, 75)
                 self.disparity_pub.publish(self.bridge.cv2_to_imgmsg(depth_inference, "8UC1"))
@@ -130,7 +117,7 @@ def main():
     rospy.init_node('disparity_generator', anonymous=False)
     d_pub = disparity_generator(24, '/home/advaith/Documents/16833_Final_Project/ROS/src/organ_slam/src/hist_model_epoch_37.pt')
     rospy.loginfo("Disparity Generator Initialized")
-    d_pub.generate_smart_disp_map()
+    d_pub.generate_geometric_disp_map()
 
 main()
 

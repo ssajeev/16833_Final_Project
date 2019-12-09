@@ -23,7 +23,12 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/FrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/FrameTrajectory_TUM_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/KeyFrameTrajectory_TUM_Format.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/KeyFrameTrajectory_TUM_Format.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/disparity_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/image_publisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/inference.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_cloud_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_fusion.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/point_fusion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/temporal_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/temporal_filter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/organ_slam/src/visual_odometry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/launch/test_rig3.launch" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/src/rpg_svo/svo_ros/launch/test_rig3.launch" afterDir="false" />
@@ -60,7 +65,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../object_detection/situational_awareness/ros_bag_extract.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -109,7 +114,13 @@
       <workItem from="1574626478704" duration="1797000" />
       <workItem from="1574968906466" duration="15640000" />
       <workItem from="1575146693298" duration="8982000" />
-      <workItem from="1575168629306" duration="17705000" />
+      <workItem from="1575168629306" duration="21565000" />
+      <workItem from="1575339143519" duration="1715000" />
+      <workItem from="1575520908783" duration="1341000" />
+      <workItem from="1575563283831" duration="2607000" />
+      <workItem from="1575754410007" duration="1828000" />
+      <workItem from="1575872245654" duration="69000" />
+      <workItem from="1575917832452" duration="436000" />
     </task>
     <servers />
   </component>

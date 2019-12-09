@@ -1,5 +1,10 @@
 #!/usr/bin/env python
-
+# point_fusion.py
+#
+# For point fusion of the point cloud
+#
+#
+# Author: Sandra Sajeev 2019
 import rospy
 import sys
 import cv2
